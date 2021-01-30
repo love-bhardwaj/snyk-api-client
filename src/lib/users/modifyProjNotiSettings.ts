@@ -1,4 +1,4 @@
-import config from '../../config';
+import getUrl from '../utils/getUrl';
 import httpClient from '../utils/httpClient';
 import getApiToken from '../utils/getApiToken';
 import { RequestOpts, ReturnData } from '../../types/types';
@@ -16,10 +16,10 @@ export default async function modifyOrgNotificationSettings(
 
   let snykRequestId = null;
 
-  const url = config.url.modProjNotiSettings(orgId, projectId);
+  const endpoint = getUrl.modProjNotiSettings(orgId, projectId);
 
   try {
-    const response = await client.put(url, {
+    const response = await client.put(endpoint, {
       json: requestBody,
     });
     const httpCode = response.statusCode;

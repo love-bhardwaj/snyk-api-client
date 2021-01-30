@@ -1,4 +1,4 @@
-import config from '../../config';
+import getUrl from '../utils/getUrl';
 import httpClient from '../utils/httpClient';
 import { RequestOpts, ReturnData } from '../../types/types';
 import getApiToken from '../utils/getApiToken';
@@ -11,8 +11,10 @@ export default async function getMyDetails(opts: RequestOpts = {}): Promise<Retu
 
   let snykRequestId = null;
 
+  const endpoint = getUrl.getMyDetails;
+
   try {
-    const response = await client.get(config.url.getMyDetails);
+    const response = await client.get(endpoint);
     const httpCode = response.statusCode;
     snykRequestId = getRequestId(response.headers);
     return Promise.resolve({

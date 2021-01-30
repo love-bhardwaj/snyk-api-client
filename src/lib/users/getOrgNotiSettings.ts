@@ -1,4 +1,4 @@
-import config from '../../config';
+import config from '../utils/getUrl';
 import httpClient from '../utils/httpClient';
 import { RequestOpts, ReturnData } from '../../types/types';
 import getApiToken from '../utils/getApiToken';
@@ -11,9 +11,9 @@ export default async function getOrgNotificationSettings(orgId: string, opts: Re
 
   let snykRequestId = null;
 
+  const endpoint = config.getOrgNotiSettings(orgId);
   try {
-    const url = config.url.getOrgNotiSettings(orgId);
-    const response = await client.get(url);
+    const response = await client.get(endpoint);
     const httpCode = response.statusCode;
 
     snykRequestId = getRequestId(response.headers);

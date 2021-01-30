@@ -1,5 +1,5 @@
 import got from 'got';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from './getUrl';
 
 export default function getHttpClient(apiToken: string) {
   return got.extend({

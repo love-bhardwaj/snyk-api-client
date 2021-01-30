@@ -1,4 +1,4 @@
-import config from '../../config';
+import config from '../utils/getUrl';
 import httpClient from '../utils/httpClient';
 import { RequestOpts, ReturnData } from '../../types/types';
 import getApiToken from '../utils/getApiToken';
@@ -15,9 +15,9 @@ export default async function getProjectNotiSettings(
 
   let snykRequestId = null;
 
+  const endpoint = config.getProjNotiSettings(orgId, projectId);
   try {
-    const url = config.url.getProjNotiSettings(orgId, projectId);
-    const response = await client.get(url);
+    const response = await client.get(endpoint);
     const httpCode = response.statusCode;
 
     snykRequestId = getRequestId(response.headers);

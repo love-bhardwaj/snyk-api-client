@@ -1,4 +1,4 @@
-import config from '../../config';
+import getUrl from '../utils/getUrl';
 import httpClient from '../utils/httpClient';
 import getApiToken from '../utils/getApiToken';
 import { RequestOpts, ReturnData } from '../../types/types';
@@ -9,12 +9,12 @@ export default async function getAllProjects(orgId: string, filters: any, opts: 
 
   const client = httpClient(apiToken);
 
-  const url = config.url.getAllProjects(orgId);
+  const endpoint = getUrl.getAllProjects(orgId);
 
   let snykRequestId = null;
 
   try {
-    const response = await client.post(url, {
+    const response = await client.post(endpoint, {
       json: filters,
     });
     const httpCode = response.statusCode;
