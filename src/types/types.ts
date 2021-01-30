@@ -1,0 +1,18 @@
+import { HttpError } from 'errors/errors';
+
+export interface httpErrorData {
+  message: string;
+  statusCode: number;
+}
+
+export interface ReturnData {
+  success: boolean;
+  response: any;
+  error: HttpError | Error | null;
+  httpCode: number;
+  snykRequestId: string | null;
+}
+
+export interface RequestOpts {
+  apiToken?: string;
+}
