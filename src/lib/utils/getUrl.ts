@@ -41,4 +41,7 @@ export default {
   getSingleProject: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}`;
   },
+  updateProject: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}`;
+  },
 };

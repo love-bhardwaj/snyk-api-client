@@ -1,10 +1,14 @@
-import { User } from '../src/index';
+import { User, Project } from '../src/index';
 import { expect } from 'chai';
 
 let orgId: string;
+let projectId: string;
+let notificationSettings = {};
 (async () => {
   const { orgs } = (await User.getMyDetails()).response;
-  orgId = orgs[0].id;
+  orgId = orgs[2].id;
+  const { projects } = (await Project.getAllProjects(orgId, {})).response;
+  projectId = projects[0].id;
 })();
 
 describe('GET: My user details', () => {
@@ -105,7 +109,14 @@ describe('GET: Project notification settings', () => {
       expect(res.httpCode).to.be.equal(404);
     }
   });
-  it('Should return project notification data');
+  it('Should return project notification data', async () => {
+    const res = await User.getProjNotiSettings(orgId, projectId);
+    expect(res.success).to.be.true;
+    expect(res.error).to.be.null;
+    expect(res.snykRequestId).to.not.be.null;
+    expect(res.response).to.exist;
+    notificationSettings = res.response;
+  });
 });
 
 describe('PUT: Modify project notification settings', () => {
@@ -133,5 +144,19 @@ describe('PUT: Modify project notification settings', () => {
       expect(error.httpCode).to.be.equal(404);
     }
   });
-  it('Should modify and return project notification data');
+  it('Should modify and return project notification data', async () => {
+    const projNotiSettings = {
+      'new-issues-remediations': {
+        enabled: true,
+        issueSeverity: 'high',
+        issueType: 'vuln',
+      },
+    };
+    const res = await User.modifyProjNotiSettings(orgId, projectId, projNotiSettings);
+    expect(res.httpCode).to.be.equal(200);
+    expect(res.success).to.be.true;
+    expect(res.response).to.exist;
+    expect(res.snykRequestId).to.not.be.null;
+    expect(res.error).to.be.null;
+  });
 });

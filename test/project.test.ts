@@ -31,7 +31,6 @@ describe('GET: All projects', () => {
 
   it('Should return list of projects', async () => {
     const res = await Project.getAllProjects(orgId, {});
-    console.log('All project response: ', res);
     expect(res.success).to.be.true;
     expect(res.httpCode).to.be.equal(200);
     expect(res.response).to.exist;
