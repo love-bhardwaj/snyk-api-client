@@ -3,6 +3,10 @@ import { RequestOpts, ReturnData } from '../../types/types';
 import getApiToken from '../utils/getApiToken';
 import getRequestId from '../utils/getRequestId';
 
+/**
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/general/the-api-details/general-api-documentation
+ * @param opts Options to override configs such as API token(Optional)
+ */
 export default async function getDocs(opts: RequestOpts = {}): Promise<ReturnData> {
   const apiToken = getApiToken(opts);
 

@@ -4,6 +4,11 @@ import { RequestOpts, ReturnData } from '../../types/types';
 import getApiToken from '../utils/getApiToken';
 import getRequestId from '../utils/getRequestId';
 
+/**
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-organization-notification-settings/get-org-notification-settings
+ * @param orgId Organization ID for org which you want the notification settings for
+ * @param opts opts Options to override configs such as API token(Optional)
+ */
 export default async function getOrgNotificationSettings(orgId: string, opts: RequestOpts = {}): Promise<ReturnData> {
   const apiToken = getApiToken(opts);
 

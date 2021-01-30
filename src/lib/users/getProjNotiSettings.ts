@@ -4,6 +4,12 @@ import { RequestOpts, ReturnData } from '../../types/types';
 import getApiToken from '../utils/getApiToken';
 import getRequestId from '../utils/getRequestId';
 
+/**
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-project-notification-settings/get-project-notification-settings
+ * @param orgId Snyk organization ID under which the project exists
+ * @param projectId Snyk project ID
+ * @param opts Options to override configs such as API token(Optional)
+ */
 export default async function getProjectNotiSettings(
   orgId: string,
   projectId: string,

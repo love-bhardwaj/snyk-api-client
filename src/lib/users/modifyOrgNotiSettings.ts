@@ -4,6 +4,12 @@ import getApiToken from '../utils/getApiToken';
 import { RequestOpts, ReturnData } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
 
+/**
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-organization-notification-settings/modify-org-notification-settings
+ * @param orgId Snyk organization ID for which you want to modify notification settings
+ * @param requestBody Request body
+ * @param opts Options to override configs such as API token
+ */
 export default async function modifyOrgNotificationSettings(
   orgId: string,
   requestBody: any,

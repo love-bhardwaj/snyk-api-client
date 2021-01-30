@@ -9,7 +9,6 @@ import getRequestId from '../utils/getRequestId';
  * @param orgId Organization ID under which project exists
  * @param projectId Project ID
  * @param reqBody Request body
- * @param opts Pass API token in the option to override existing
+ * @param opts Pass API token in the option to override existing(Optional)
  */
-
 export default async function updateAProject(orgId: string, projectId: string, reqBody: any, opts: RequestOpts = {}) {}

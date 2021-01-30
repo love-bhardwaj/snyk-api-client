@@ -4,6 +4,12 @@ import getApiToken from '../utils/getApiToken';
 import { RequestOpts, ReturnData } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
 
+/**
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/individual-project/retrieve-a-single-project
+ * @param orgId Org ID for the project
+ * @param projectId Project ID
+ * @param opts Options to override configs such as API token(optional)
+ */
 export default async function getSingleProject(
   orgId: string,
   projectId: string,
