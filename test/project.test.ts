@@ -154,3 +154,24 @@ describe('POST: Activate a project with project ID', () => {
     utilFunctions.expect200(res);
   });
 });
+
+describe('POST: Get all aggregate issues for a project', () => {
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Project.getAggProjectIssues('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      const res = await Project.getAggProjectIssues(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return all project issues', async () => {
+    const res = await Project.getAggProjectIssues(orgId, projectId);
+    utilFunctions.expect200(res);
+  });
+});

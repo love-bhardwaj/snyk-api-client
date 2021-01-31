@@ -14,6 +14,7 @@ import updateAProject from './lib/projects/updateAProject';
 import deleteAProject from './lib/projects/deleteAProject';
 import deactivateAProject from './lib/projects/deactivateAProject';
 import activateAProject from './lib/projects/activateAProject';
+import getAggProjectIssues from './lib/projects/getAggProjectIssues';
 
 const General = { getDocs };
 const User = {
@@ -31,6 +32,7 @@ const Project = {
   deleteAProject,
   deactivateAProject,
   activateAProject,
+  getAggProjectIssues,
 };
 
 export { General, User, Project };

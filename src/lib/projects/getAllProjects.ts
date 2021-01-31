@@ -44,6 +44,8 @@ export default async function getAllProjects(orgId: string, filters: any, opts: 
       let message: string = "Something wen't wrong";
       if (httpCode == 404) {
         message = `Org ID: ${orgId} not found!`;
+      } else if (httpCode == 400) {
+        message = 'Bad request, please check the documentation';
       } else if (httpCode == 401) {
         message = 'Invalid token or unauthorized to make the request';
       } else if (httpCode == 500) {

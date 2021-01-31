@@ -53,4 +53,7 @@ export default {
   activateProject: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}/activate`;
   },
+  getAggIssues: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/aggregated-issues`;
+  },
 };
