@@ -16,6 +16,7 @@ import deactivateAProject from './lib/projects/deactivateAProject';
 import activateAProject from './lib/projects/activateAProject';
 import getAggProjectIssues from './lib/projects/getAggProjectIssues';
 import getProjectDepGraph from './lib/projects/getProjectDepGraph';
+import listAllIgnores from './lib/projects/listAllIgnores';
 
 const General = { getDocs };
 const User = {
@@ -35,6 +36,7 @@ const Project = {
   activateAProject,
   getAggProjectIssues,
   getProjectDepGraph,
+  listAllIgnores,
 };
 
 export { General, User, Project };

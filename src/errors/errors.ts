@@ -18,3 +18,11 @@ class TokenNotFoundError extends Error {
   }
 }
 export { TokenNotFoundError };
+
+class RequestBodyEmpty extends Error {
+  constructor() {
+    super('Request body cannot be empty!');
+  }
+}
+
+export { RequestBodyEmpty };

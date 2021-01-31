@@ -59,4 +59,19 @@ export default {
   getProjDepGraph: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}/dep-graph`;
   },
+  listAllIgnores: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/ignores`;
+  },
+  retrieveIgnore: (orgId: string, projectId: string, issueId: string): string => {
+    return `org/${orgId}/project/${projectId}/ignore/${issueId}`;
+  },
+  addIgnore: (orgId: string, projectId: string, issueId: string): string => {
+    return `org/${orgId}/project/${projectId}/ignore/${issueId}`;
+  },
+  replaceIgnores: (orgId: string, projectId: string, issueId: string): string => {
+    return `org/${orgId}/project/${projectId}/ignore/${issueId}`;
+  },
+  deleteIgnore: (orgId: string, projectId: string, issueId: string): string => {
+    return `org/${orgId}/project/${projectId}/ignore/${issueId}`;
+  },
 };

@@ -8,11 +8,7 @@ import processRequest from '../utils/processRequest';
  * @param projectId Snyk project ID which is to be activated
  * @param opts options to override configs such as API token(optional)
  */
-export default async function deactivateAProject(
-  orgId: string,
-  projectId: string,
-  opts: RequestOpts = {},
-): Promise<ReturnData> {
+export default async (orgId: string, projectId: string, opts: RequestOpts = {}): Promise<ReturnData> => {
   const endpoint = getUrl.deactivateProject(orgId, projectId);
 
   try {
@@ -20,4 +16,4 @@ export default async function deactivateAProject(
   } catch (errRes) {
     return Promise.reject(errRes);
   }
-}
+};
