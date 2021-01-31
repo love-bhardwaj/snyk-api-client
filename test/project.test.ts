@@ -234,3 +234,24 @@ describe("GET: Retrieve a ignore by it's issue id", () => {
   it('Should return 404 for issue ID not found');
   it('Should get the ignore');
 });
+
+describe('POST: Add ignore', () => {
+  it('Should return 404 for org ID not found');
+  it('Should return 404 for project ID not found');
+  it('Should return 404 for issue ID not found');
+  it('Should add the ignore and return 200');
+});
+
+describe('PUT: Replace ignores', () => {
+  it('Should return 404 for org ID not found');
+  it('Should return 404 for project ID not found');
+  it('Should return 404 for issue ID not found');
+  it('Should replace the ignore and return 200');
+});
+
+describe('DELETE: Delete ignores', () => {
+  it('Should return 404 for org ID not found');
+  it('Should return 404 for project ID not found');
+  it('Should return 404 for issue ID not found');
+  it('Should delete the ignore and return 200');
+});
