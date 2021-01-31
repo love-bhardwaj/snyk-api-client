@@ -56,4 +56,7 @@ export default {
   getAggIssues: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}/aggregated-issues`;
   },
+  getProjDepGraph: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/dep-graph`;
+  },
 };

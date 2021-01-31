@@ -78,6 +78,7 @@ describe('PUT: Update a project with project ID', () => {
     try {
       await Project.updateAProject(orgId, 'test', {});
     } catch (errRes) {
+      console.log('Error updating project: ', errRes);
       utilFunctions.expect400(errRes);
     }
   });
@@ -173,5 +174,16 @@ describe('POST: Get all aggregate issues for a project', () => {
   it('Should return all project issues', async () => {
     const res = await Project.getAggProjectIssues(orgId, projectId);
     utilFunctions.expect200(res);
+  });
+});
+
+describe('GET: Get project deph graph by project ID', () => {
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      await Project.getProjectDepGraph('test', projectId);
+    } catch (errRes) {
+      console.log('Error response: ', errRes);
+      utilFunctions.expect404(errRes);
+    }
   });
 });

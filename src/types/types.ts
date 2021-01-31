@@ -15,4 +15,12 @@ export interface ReturnData {
 
 export interface RequestOpts {
   apiToken?: string;
+  requestBody?: any;
+}
+
+export const enum RequestMethod {
+  GET,
+  POST,
+  PUT,
+  DELETE,
 }
