@@ -104,8 +104,53 @@ describe('DELETE: Delete project with the project ID', async () => {
     }
   });
   it('Should delete the project and return 200', async () => {
+    // Commenting out since can't practically delete a project everytime
     // const res = await Project.deleteAProject(orgId, projectId);
     // console.log('Response: ', res);
     // utilFunctions.expect200(res);
+  });
+});
+
+describe('POST: Deactivate a project with project ID', () => {
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Project.deactivateAProject('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      const res = await Project.deactivateAProject(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should deactivate the project successfully', async () => {
+    const res = await Project.deactivateAProject(orgId, projectId);
+    utilFunctions.expect200(res);
+  });
+});
+
+describe('POST: Activate a project with project ID', () => {
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Project.activateAProject('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      const res = await Project.activateAProject(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should deactivate the project successfully', async () => {
+    const res = await Project.activateAProject(orgId, projectId);
+    utilFunctions.expect200(res);
   });
 });

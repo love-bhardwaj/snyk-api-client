@@ -12,6 +12,8 @@ import getAllProjects from './lib/projects/getAllProjects';
 import getSingleProject from './lib/projects/getSingleProject';
 import updateAProject from './lib/projects/updateAProject';
 import deleteAProject from './lib/projects/deleteAProject';
+import deactivateAProject from './lib/projects/deactivateAProject';
+import activateAProject from './lib/projects/activateAProject';
 
 const General = { getDocs };
 const User = {
@@ -22,6 +24,13 @@ const User = {
   getProjNotiSettings,
   modifyProjNotiSettings,
 };
-const Project = { getAllProjects, getSingleProject, updateAProject, deleteAProject };
+const Project = {
+  getAllProjects,
+  getSingleProject,
+  updateAProject,
+  deleteAProject,
+  deactivateAProject,
+  activateAProject,
+};
 
 export { General, User, Project };

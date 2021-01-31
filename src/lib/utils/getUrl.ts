@@ -48,6 +48,9 @@ export default {
     return `org/${orgId}/project/${projectId}`;
   },
   deactivateProject: (orgId: string, projectId: string): string => {
-    return `org/${orgId}/project/${projectId}`;
+    return `org/${orgId}/project/${projectId}/deactivate`;
+  },
+  activateProject: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/activate`;
   },
 };

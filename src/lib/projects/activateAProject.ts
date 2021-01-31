@@ -5,26 +5,22 @@ import getRequestId from '../utils/getRequestId';
 import { RequestOpts, ReturnData } from '../../types/types';
 
 /**
- * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/individual-project/delete-a-project
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/activate-an-individual-project
  * @param orgId Snyk organization ID under which the project exists
- * @param projectId Snyk project ID for the project that is to be deleted
+ * @param projectId Snyk project ID which is to be activated
  * @param opts options to override configs such as API token(optional)
  */
-export default async function deleteAProject(
-  orgId: string,
-  projectId: string,
-  opts: RequestOpts = {},
-): Promise<ReturnData> {
+export default async function activateAProject(orgId: string, projectId: string, opts: RequestOpts = {}) {
   const apiToken = getApiToken(opts);
 
   const client = httpClient(apiToken);
 
-  const endpoint = getUrl.deleteProject(orgId, projectId);
+  const endpoint = getUrl.activateProject(orgId, projectId);
 
   let snykRequestId = null;
 
   try {
-    const response = await client.delete(endpoint);
+    const response = await client.post(endpoint);
 
     const httpCode = response.statusCode;
 
