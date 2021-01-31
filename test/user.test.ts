@@ -1,5 +1,6 @@
 import { User, Project } from '../src/index';
 import { expect } from 'chai';
+import utilFunctions from './util';
 
 let orgId: string;
 let projectId: string;
@@ -26,9 +27,8 @@ describe('GET: My user details', () => {
   it('Should return 401 is API token not valid', async () => {
     try {
       await User.getMyDetails({ apiToken: 'invalid' });
-    } catch (error) {
-      expect(error.success).to.be.false;
-      expect(error.response.code).to.be.equal(401);
+    } catch (errRes) {
+      utilFunctions.expect401(errRes);
     }
   });
 });
@@ -37,20 +37,16 @@ describe('GET: Get org notification settings', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
       await User.getOrgNotiSettings('test');
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.success).to.be.false;
-      expect(error.response.code).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
 
   it('Should return org notification data', async () => {
     // const { orgs } = (await User.getMyDetails()).response;
     // const orgId = orgs[0].id;
-    const { response, success, error } = await User.getOrgNotiSettings(orgId);
-    expect(response).to.exist;
-    expect(success).to.be.true;
-    expect(error).to.not.exist;
+    const res = await User.getOrgNotiSettings(orgId);
+    utilFunctions.expect200(res);
   });
 });
 
@@ -75,17 +71,14 @@ describe('PUT: Modify organization notification settings', () => {
   it('Should return 404 for org not found', async () => {
     try {
       await User.modifyOrgNotiSettings('test', { test: true });
-    } catch (error) {
-      expect(error.success).to.be.false;
-      expect(error.response.code).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
 
   it('Should return org notification data', async () => {
-    const { response, success, error } = await User.modifyOrgNotiSettings(orgId, reqBody);
-    expect(response).to.exist;
-    expect(success).to.be.true;
-    expect(error).to.not.exist;
+    const res = await User.modifyOrgNotiSettings(orgId, reqBody);
+    utilFunctions.expect200(res);
   });
 });
 
@@ -93,28 +86,20 @@ describe('GET: Project notification settings', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
       await User.getProjNotiSettings('test', 'test');
-    } catch (res) {
-      expect(res).to.exist;
-      expect(res.success).to.be.false;
-      expect(res.response.code).to.be.equal(404);
-      expect(res.httpCode).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
       await User.getProjNotiSettings(orgId, 'test');
-    } catch (res) {
-      expect(res).to.exist;
-      expect(res.success).to.be.false;
-      expect(res.httpCode).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
   it('Should return project notification data', async () => {
     const res = await User.getProjNotiSettings(orgId, projectId);
-    expect(res.success).to.be.true;
-    expect(res.error).to.be.null;
-    expect(res.snykRequestId).to.not.be.null;
-    expect(res.response).to.exist;
+    utilFunctions.expect200(res);
     notificationSettings = res.response;
   });
 });
@@ -131,17 +116,15 @@ describe('PUT: Modify project notification settings', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
       await User.modifyProjNotiSettings('test', 'test', reqBody);
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.httpCode).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
       await User.modifyProjNotiSettings(orgId, 'test', reqBody);
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.httpCode).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
   it('Should modify and return project notification data', async () => {
@@ -153,10 +136,6 @@ describe('PUT: Modify project notification settings', () => {
       },
     };
     const res = await User.modifyProjNotiSettings(orgId, projectId, projNotiSettings);
-    expect(res.httpCode).to.be.equal(200);
-    expect(res.success).to.be.true;
-    expect(res.response).to.exist;
-    expect(res.snykRequestId).to.not.be.null;
-    expect(res.error).to.be.null;
+    utilFunctions.expect200(res);
   });
 });

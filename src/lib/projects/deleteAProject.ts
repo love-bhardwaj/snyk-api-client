@@ -1,16 +1,16 @@
 import getUrl from '../utils/getUrl';
 import httpClient from '../utils/httpClient';
 import getApiToken from '../utils/getApiToken';
-import { RequestOpts, ReturnData } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
+import { RequestOpts, ReturnData } from '../../types/types';
 
 /**
- * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/individual-project/retrieve-a-single-project
- * @param orgId Org ID for the project
- * @param projectId Project ID
- * @param opts Options to override configs such as API token(optional)
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/individual-project/delete-a-project
+ * @param orgId Snyk organization ID under which the project exists
+ * @param projectId Snyk project ID for the project that is to be deleted
+ * @param opts ptions to override configs such as API token(optional)
  */
-export default async function getSingleProject(
+export default async function deleteAProject(
   orgId: string,
   projectId: string,
   opts: RequestOpts = {},
@@ -19,12 +19,12 @@ export default async function getSingleProject(
 
   const client = httpClient(apiToken);
 
-  const endpoint = getUrl.getSingleProject(orgId, projectId);
+  const endpoint = getUrl.deleteProject(orgId, projectId);
 
   let snykRequestId = null;
 
   try {
-    const response = await client.get(endpoint);
+    const response = await client.delete(endpoint);
 
     const httpCode = response.statusCode;
 

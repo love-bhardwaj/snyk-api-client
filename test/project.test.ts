@@ -1,5 +1,6 @@
 import { Project, User } from '../src/index';
 import { expect } from 'chai';
+import utilFunctions from './util';
 
 let orgId: string;
 let projectId: string;
@@ -13,27 +14,21 @@ describe('GET: All projects', () => {
   it('Should return 404 for org not found', async () => {
     try {
       const res = await Project.getAllProjects('test', {});
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.success).to.be.false;
-      expect(error.httpCode).to.be.equal(404);
+    } catch (errorRes) {
+      utilFunctions.expect404(errorRes);
     }
   });
   it('Should return 401 for invalid API token', async () => {
     try {
       const res = await Project.getAllProjects('test', {}, { apiToken: 'test' });
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.success).to.be.false;
-      expect(error.httpCode).to.be.equal(401);
+    } catch (errRes) {
+      utilFunctions.expect401(errRes);
     }
   });
 
   it('Should return list of projects', async () => {
     const res = await Project.getAllProjects(orgId, {});
-    expect(res.success).to.be.true;
-    expect(res.httpCode).to.be.equal(200);
-    expect(res.response).to.exist;
+    utilFunctions.expect200(res);
     projectId = res.response.projects[0].id;
   });
 });
@@ -42,36 +37,75 @@ describe('GET: A single project with project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
       await Project.getSingleProject('test', projectId);
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.success).to.be.false;
-      expect(error.httpCode).to.be.equal(404);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
     }
   });
+
   it('Should return 400 for invalid project ID', async () => {
     try {
       await Project.getSingleProject(orgId, 'test');
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.success).to.be.false;
-      expect(error.httpCode).to.be.equal(400);
+    } catch (errRes) {
+      utilFunctions.expect400(errRes);
     }
   });
+
   it('Should return 401 for invalid auth token', async () => {
     try {
       await Project.getSingleProject(orgId, projectId, { apiToken: 'test' });
-    } catch (error) {
-      expect(error).to.exist;
-      expect(error.success).to.be.false;
-      expect(error.httpCode).to.be.equal(401);
+    } catch (errRes) {
+      utilFunctions.expect401(errRes);
     }
   });
+
   it('Should return the project', async () => {
     const res = await Project.getSingleProject(orgId, projectId);
-    expect(res).to.exist;
-    expect(res.response).to.exist;
-    expect(res.success).to.be.true;
-    expect(res.httpCode).to.be.equal(200);
+    utilFunctions.expect200(res);
     expect(res.error).to.be.null;
+  });
+});
+
+describe('PUT: Update a project with project ID', () => {
+  it('Should return 404 for org with given ID not found', async () => {
+    try {
+      const res = await Project.updateAProject(orgId, projectId, {});
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return 400 for project with given ID not found', async () => {
+    try {
+      await Project.updateAProject(orgId, 'test', {});
+    } catch (errRes) {
+      utilFunctions.expect400(errRes);
+    }
+  });
+
+  it('Should update the project successfully', async () => {
+    const res = await Project.updateAProject(orgId, projectId, {});
+    utilFunctions.expect200(res);
+  });
+});
+
+describe('DELETE: Delete project with the project ID', async () => {
+  it('Should return 404 for org not found', async () => {
+    try {
+      const res = await Project.deleteAProject('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should retrun 404 for project not found', async () => {
+    try {
+      const res = await Project.deleteAProject(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should delete the project and return 200', async () => {
+    // const res = await Project.deleteAProject(orgId, projectId);
+    // console.log('Response: ', res);
+    // utilFunctions.expect200(res);
   });
 });

@@ -44,4 +44,10 @@ export default {
   updateProject: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}`;
   },
+  deleteProject: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}`;
+  },
+  deactivateProject: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}`;
+  },
 };
