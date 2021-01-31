@@ -255,3 +255,9 @@ describe('DELETE: Delete ignores', () => {
   it('Should return 404 for issue ID not found');
   it('Should delete the ignore and return 200');
 });
+
+describe('GET: List Jira issues with project ID', () => {
+  it('Should return 404 for org ID not found');
+  it('Should return 404 for project ID not found');
+  it('Should return all the Jira issues');
+});

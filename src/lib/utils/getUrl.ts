@@ -74,4 +74,10 @@ export default {
   deleteIgnore: (orgId: string, projectId: string, issueId: string): string => {
     return `org/${orgId}/project/${projectId}/ignore/${issueId}`;
   },
+  listAllJiraIssues: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/jira-issues`;
+  },
+  createJiraIssue: (orgId: string, projectId: string, issueId: string) => {
+    return `org/${orgId}/project/${projectId}/issue/${issueId}/jira-issue`;
+  },
 };

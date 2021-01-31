@@ -17,6 +17,12 @@ import activateAProject from './lib/projects/activateAProject';
 import getAggProjectIssues from './lib/projects/getAggProjectIssues';
 import getProjectDepGraph from './lib/projects/getProjectDepGraph';
 import listAllIgnores from './lib/projects/listAllIgnores';
+import retrieveIgnore from './lib/projects/retrieveIgnore';
+import addIgnore from './lib/projects/addIgnore';
+import replaceIgnores from './lib/projects/replaceIgnores';
+import deleteIgnores from './lib/projects/deleteIgnores';
+import listAllJiraIssues from './lib/projects/listAllJiraIssues';
+import createJiraIssue from './lib/projects/createJiraIssue';
 
 const General = { getDocs };
 const User = {
@@ -37,6 +43,12 @@ const Project = {
   getAggProjectIssues,
   getProjectDepGraph,
   listAllIgnores,
+  retrieveIgnore,
+  addIgnore,
+  replaceIgnores,
+  deleteIgnores,
+  listAllJiraIssues,
+  createJiraIssue,
 };
 
 export { General, User, Project };
