@@ -26,6 +26,7 @@ import createJiraIssue from './lib/projects/createJiraIssue';
 import listProjectSettings from './lib/projects/listProjectSettings';
 import updateProjectSettings from './lib/projects/udpateProjectSettings';
 import deleteProjectSettings from './lib/projects/deleteProjectSettings';
+import moveProject from './lib/projects/moveProject';
 
 const General = { getDocs };
 const User = {
@@ -55,6 +56,7 @@ const Project = {
   listProjectSettings,
   updateProjectSettings,
   deleteProjectSettings,
+  moveProject,
 };
 
 export { General, User, Project };
