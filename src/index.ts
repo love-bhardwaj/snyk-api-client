@@ -23,6 +23,9 @@ import replaceIgnores from './lib/projects/replaceIgnores';
 import deleteIgnores from './lib/projects/deleteIgnores';
 import listAllJiraIssues from './lib/projects/listAllJiraIssues';
 import createJiraIssue from './lib/projects/createJiraIssue';
+import listProjectSettings from './lib/projects/listProjectSettings';
+import updateProjectSettings from './lib/projects/udpateProjectSettings';
+import deleteProjectSettings from './lib/projects/deleteProjectSettings';
 
 const General = { getDocs };
 const User = {
@@ -49,6 +52,9 @@ const Project = {
   deleteIgnores,
   listAllJiraIssues,
   createJiraIssue,
+  listProjectSettings,
+  updateProjectSettings,
+  deleteProjectSettings,
 };
 
 export { General, User, Project };

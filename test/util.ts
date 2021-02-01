@@ -9,7 +9,14 @@ export default {
     expect(res.snykRequestId).to.not.be.null;
     expect(res.error).to.be.null;
   },
-
+  expect204: (res: any) => {
+    expect(res).to.exist;
+    expect(res.response).to.exist;
+    expect(res.success).to.be.true;
+    expect(res.httpCode).to.be.equal(204);
+    expect(res.snykRequestId).to.not.be.null;
+    expect(res.error).to.be.null;
+  },
   expect400: (errRes: any) => {
     expect(errRes).to.exist;
     expect(errRes.success).to.be.false;

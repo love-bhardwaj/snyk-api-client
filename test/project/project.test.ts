@@ -223,7 +223,6 @@ describe('GET: List all ignores for a project', () => {
   });
   it('Should return the list of all ignores for the project', async () => {
     const res = await Project.listAllIgnores(orgId, projectId);
-    console.log('Ingore list: ', res);
     utilFunctions.expect200(res);
   });
 });
@@ -280,5 +279,100 @@ describe('GET: List Jira issues with project ID', () => {
   it('Should return all the Jira issues', async () => {
     const res = await Project.listAllJiraIssues(orgId, projectId);
     utilFunctions.expect200(res);
+  });
+});
+
+describe('GET: List project settings for a given project ID', () => {
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      await Project.listProjectSettings('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return 404 from project ID not found', async () => {
+    try {
+      await Project.listProjectSettings(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return the project settings', async () => {
+    const res = await Project.listProjectSettings(orgId, projectId);
+    utilFunctions.expect200(res);
+  });
+});
+
+describe('PUT: Update project settings', () => {
+  it('Should throw an error is request body empty', async () => {
+    try {
+      await Project.updateProjectSettings(orgId, projectId);
+    } catch (err) {
+      expect(err).to.exist;
+      expect(err).to.not.be.null;
+    }
+  });
+
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      await Project.updateProjectSettings('test', projectId, { requestBody: {} });
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return 404 from project ID not found', async () => {
+    try {
+      await Project.updateProjectSettings(orgId, 'test', { requestBody: {} });
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should update the project settings', async () => {
+    const requestBody = {
+      autoDepUpgradeLimit: 2,
+      autoDepUpgradeIgnoredDependencies: ['tap', 'ava'],
+      autoDepUpgradeEnabled: false,
+      autoDepUpgradeMinAge: 21,
+      pullRequestFailOnAnyVulns: false,
+      pullRequestFailOnlyForHighSeverity: true,
+      pullRequestTestEnabled: true,
+      pullRequestAssignment: {
+        enabled: true,
+        type: 'manual',
+        assignees: ['username'],
+      },
+      autoRemediationPrs: {
+        freshPrsEnabled: true,
+        backlogPrsEnabled: false,
+        usePatchRemediation: false,
+      },
+    };
+    const res = await Project.updateProjectSettings(orgId, projectId, { requestBody });
+    utilFunctions.expect200(res);
+  });
+});
+
+describe('DELETE: Project settings for given project ID', () => {
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      await Project.deleteProjectSettings('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      await Project.deleteProjectSettings(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should delete the project settigns and return 200', async () => {
+    const res = await Project.deleteProjectSettings(orgId, projectId);
+    utilFunctions.expect204(res);
   });
 });

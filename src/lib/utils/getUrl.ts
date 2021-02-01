@@ -80,4 +80,16 @@ export default {
   createJiraIssue: (orgId: string, projectId: string, issueId: string) => {
     return `org/${orgId}/project/${projectId}/issue/${issueId}/jira-issue`;
   },
+  listProjectSettings: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/settings`;
+  },
+  updateProjectSettings: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/settings`;
+  },
+  deleteProjectSettings: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/settings`;
+  },
+  moveProject: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/move`;
+  },
 };
