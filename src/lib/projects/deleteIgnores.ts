@@ -1,7 +1,6 @@
 import getUrl from '../utils/getUrl';
 import processRequest from '../utils/processRequest';
 import { RequestOpts, ReturnData, RequestMethod } from '../../types/types';
-import { RequestBodyEmpty } from '../../errors/errors';
 
 export default async (
   orgId: string,
