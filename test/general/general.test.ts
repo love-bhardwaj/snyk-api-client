@@ -1,6 +1,5 @@
-import { General } from '../src/index';
-import { expect } from 'chai';
-import utilFunctions from './util';
+import { General } from '../../src/index';
+import utilFunctions from '../util';
 
 describe('GET: Documentaion related request', () => {
   it('Should return success and response if token valid', async () => {

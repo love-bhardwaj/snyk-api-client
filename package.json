@@ -11,7 +11,10 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "test": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/**/*.test.ts'"
+    "test": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/**/*.test.ts'",
+    "test-general": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/general/*.test.ts'",
+    "test-project": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/project/*.test.ts'",
+    "test-user": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/user/*.test.ts'"
   },
   "keywords": [],
   "author": {

@@ -1,6 +1,6 @@
-import { User, Project } from '../src/index';
+import { User, Project } from '../../src/index';
 import { expect } from 'chai';
-import utilFunctions from './util';
+import utilFunctions from '../util';
 
 let orgId: string;
 let projectId: string;

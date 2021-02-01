@@ -1,6 +1,6 @@
-import { Project, User } from '../src/index';
+import { Project, User } from '../../src/index';
 import { expect } from 'chai';
-import utilFunctions from './util';
+import utilFunctions from '../util';
 
 let orgId: string;
 let projectId: string;
@@ -229,7 +229,13 @@ describe('GET: List all ignores for a project', () => {
 });
 
 describe("GET: Retrieve a ignore by it's issue id", () => {
-  it('Should return 404 for org ID not found');
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      await Project.retrieveIgnore('test', projectId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
   it('Should return 404 for project ID not found');
   it('Should return 404 for issue ID not found');
   it('Should get the ignore');
@@ -257,7 +263,22 @@ describe('DELETE: Delete ignores', () => {
 });
 
 describe('GET: List Jira issues with project ID', () => {
-  it('Should return 404 for org ID not found');
-  it('Should return 404 for project ID not found');
-  it('Should return all the Jira issues');
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      await Project.listAllJiraIssues('test', projectId);
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      await Project.listAllJiraIssues(orgId, 'test');
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+  it('Should return all the Jira issues', async () => {
+    const res = await Project.listAllJiraIssues(orgId, projectId);
+    utilFunctions.expect200(res);
+  });
 });
