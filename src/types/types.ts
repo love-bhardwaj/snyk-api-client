@@ -13,6 +13,11 @@ export interface ReturnData {
   snykRequestId: string | null;
 }
 
+export interface QueryParameters {
+  perPage?: string;
+  page?: string;
+}
+
 export interface RequestOpts {
   apiToken?: string;
   baseUrl?: string;

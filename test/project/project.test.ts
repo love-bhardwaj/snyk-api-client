@@ -1,6 +1,6 @@
 import { Project, User, ClientConfig } from '../../src/index';
 import { expect } from 'chai';
-import utilFunctions from '../util';
+import utilFunctions from '../testUtils';
 
 let orgId1: string;
 let orgId2: string;

@@ -1,6 +1,6 @@
 import ClientConfig from './lib/config/clientSettings';
-import General from './lib/general/index';
-import User from './lib/users/index';
-import Project from './lib/projects/index';
+import General from './lib/api/general/index';
+import User from './lib/api/users/index';
+import Project from './lib/api/projects/index';
 
 export { ClientConfig, General, User, Project };

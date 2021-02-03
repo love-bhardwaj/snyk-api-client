@@ -1,5 +1,5 @@
 import { General } from '../../src/index';
-import utilFunctions from '../util';
+import utilFunctions from '../testUtils';
 
 describe('GET: Documentaion related request', () => {
   it('Should return success and response if token valid', async () => {
