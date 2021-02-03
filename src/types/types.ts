@@ -23,6 +23,7 @@ export interface RequestOpts {
   baseUrl?: string;
   baseApiPath?: string;
   requestBody?: any;
+  queryParams?: any;
 }
 
 export interface ClientOpts {

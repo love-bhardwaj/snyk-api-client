@@ -1,9 +1,9 @@
 import getUrl from '../../utils/getUrl';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
+import { RequestOpts, RequestMethod, ReturnData } from '../../../types/types';
 
 export default async (groupId: string, opts: RequestOpts = {}): Promise<ReturnData> => {
-  const endpoint = getUrl.viewGroupSettings(groupId);
+  const endpoint = getUrl.listAllJiraIssues(groupId, opts.queryParams);
 
   try {
     return await processRequest(endpoint, RequestMethod.GET, opts);
