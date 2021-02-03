@@ -15,6 +15,8 @@ export interface ReturnData {
 
 export interface RequestOpts {
   apiToken?: string;
+  baseUrl?: string;
+  baseApiPath?: string;
   requestBody?: any;
 }
 

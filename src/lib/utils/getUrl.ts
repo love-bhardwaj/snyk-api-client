@@ -92,4 +92,13 @@ export default {
   moveProject: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}/move`;
   },
+  addTag: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/tags`;
+  },
+  removeTag: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/tags/remove`;
+  },
+  applyAttributes: (orgId: string, projectId: string): string => {
+    return `org/${orgId}/project/${projectId}/attributes`;
+  },
 };

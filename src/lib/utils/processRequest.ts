@@ -4,15 +4,13 @@ import { RequestOpts, ReturnData, RequestMethod } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
 
 export default async (endpoint: string, method: RequestMethod, opts: RequestOpts = {}): Promise<ReturnData> => {
-  const apiToken = getApiToken(opts);
-
-  const client = httpClient(apiToken);
-
   let snykRequestId = null,
     response,
     httpCode;
 
   try {
+    const client = httpClient(opts);
+
     switch (method) {
       case RequestMethod.GET:
         response = await client.get(endpoint);
@@ -85,6 +83,7 @@ export default async (endpoint: string, method: RequestMethod, opts: RequestOpts
         });
     }
   } catch (error) {
+    // TODO: Can distinguish between API and request error
     if (error.response) {
       const response = error.response;
       const httpCode = response.statusCode || 500;

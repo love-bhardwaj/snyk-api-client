@@ -26,3 +26,11 @@ class RequestBodyEmpty extends Error {
 }
 
 export { RequestBodyEmpty };
+
+class UrlNotSetError extends Error {
+  constructor() {
+    super('API URL not set');
+  }
+}
+
+export { UrlNotSetError };

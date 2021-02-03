@@ -1,12 +1,22 @@
 import got from 'got';
-import { BASE_URL } from './getUrl';
+import { RequestOpts } from '../../types/types';
+import getApiToken from './getApiToken';
+import getApiUrl from './getApiUrl';
 
-export default function getHttpClient(apiToken: string) {
-  return got.extend({
-    prefixUrl: BASE_URL,
-    headers: {
-      Authorization: `token ${apiToken}`,
-    },
-    responseType: 'json',
-  });
+export default function getHttpClient(opts: RequestOpts) {
+  // TODO: Should move get API token function call here
+  try {
+    const apiUrl = getApiUrl(opts);
+    const apiToken = getApiToken(opts);
+
+    return got.extend({
+      prefixUrl: apiUrl,
+      headers: {
+        Authorization: `token ${apiToken}`,
+      },
+      responseType: 'json',
+    });
+  } catch (error) {
+    throw error;
+  }
 }

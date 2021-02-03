@@ -1,4 +1,4 @@
-import { Project, User } from '../../src/index';
+import { Project, User, ClientConfig } from '../../src/index';
 import { expect } from 'chai';
 import utilFunctions from '../util';
 
@@ -10,7 +10,7 @@ let ignoreId: string;
 (async () => {
   const { orgs } = (await User.getMyDetails()).response;
   orgId1 = orgs[2].id;
-  orgId2 = orgs[3].id;
+  orgId2 = orgs[1].id;
 })();
 
 describe('GET: All projects', () => {
@@ -175,6 +175,7 @@ describe('POST: Get all aggregate issues for a project', () => {
   });
   it('Should return all project issues', async () => {
     const res = await Project.getAggProjectIssues(orgId1, projectId);
+    // console.log('Aggregate issue list: ', res.response);
     utilFunctions.expect200(res);
   });
 });
@@ -420,3 +421,7 @@ describe('PUT: Move project on org to another', () => {
     utilFunctions.expect200(res);
   });
 });
+
+// describe('POST: Add a tag to project', () => {});
+// describe('POST: Remove a trag from project', () => {});
+// describe('POST: Apply project attributes', () => {});
