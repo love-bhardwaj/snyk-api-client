@@ -1,10 +1,4 @@
-import { TokenNotFoundError } from '../../errors/errors';
-
-interface ClientOpts {
-  apiToken?: string;
-  baseUrl?: string;
-  baseApiPath?: string;
-}
+import { ClientOpts } from '../../types/types';
 
 class ClientConfig {
   private static apiToken: string | undefined = process.env.SNYK_API_TOKEN;

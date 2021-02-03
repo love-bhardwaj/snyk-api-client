@@ -20,6 +20,12 @@ export interface RequestOpts {
   requestBody?: any;
 }
 
+export interface ClientOpts {
+  apiToken?: string;
+  baseUrl?: string;
+  baseApiPath?: string;
+}
+
 export const enum RequestMethod {
   GET,
   POST,

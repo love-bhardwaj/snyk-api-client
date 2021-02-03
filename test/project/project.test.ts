@@ -422,6 +422,119 @@ describe('PUT: Move project on org to another', () => {
   });
 });
 
-// describe('POST: Add a tag to project', () => {});
-// describe('POST: Remove a trag from project', () => {});
-// describe('POST: Apply project attributes', () => {});
+describe('POST: Add a tag to project', () => {
+  const reqBody = {
+    key: 'test',
+    value: 'test',
+  };
+
+  it('Should return error for empty request body', async () => {
+    try {
+      await Project.addATag(orgId1, projectId);
+    } catch (errRes) {
+      utilFunctions.expectErr(errRes);
+    }
+  });
+
+  it('Should return 404 for orgID not found', async () => {
+    try {
+      await Project.addATag('test', projectId, { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return 404 for projectID not found', async () => {
+    try {
+      await Project.addATag(orgId1, 'test', { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect422(errRes);
+    }
+  });
+
+  it('Should add the tag and return tags', async () => {
+    const res = await Project.addATag(orgId1, projectId, { requestBody: reqBody });
+    utilFunctions.expect200(res);
+  });
+
+  it('Should return error for project tag already exists', async () => {
+    try {
+      await Project.addATag(orgId1, projectId, { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect422(errRes);
+    }
+  });
+});
+
+describe('POST: Remove a trag from project', () => {
+  const reqBody = {
+    key: 'test',
+    value: 'test',
+  };
+
+  it('Should return error for empty request body', async () => {
+    try {
+      await Project.removeATag(orgId1, projectId);
+    } catch (errRes) {
+      utilFunctions.expectErr(errRes);
+    }
+  });
+
+  it('Should return 404 for orgID not found', async () => {
+    try {
+      await Project.removeATag('test', projectId, { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return 404 for projectID not found', async () => {
+    try {
+      await Project.removeATag(orgId1, 'test', { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect422(errRes);
+    }
+  });
+
+  it('Should add the tag and return tags', async () => {
+    const res = await Project.removeATag(orgId1, projectId, { requestBody: reqBody });
+    utilFunctions.expect200(res);
+  });
+});
+
+describe('POST: Apply project attributes', () => {
+  const reqBody = {
+    criticality: ['high'],
+    environment: ['backend'],
+    lifecycle: ['development'],
+  };
+
+  it('Should throw an error for request body empty', async () => {
+    try {
+      const res = await Project.applyAttributes(orgId1, projectId);
+    } catch (error) {
+      utilFunctions.expectErr(error);
+    }
+  });
+
+  it('Should return 404 for org', async () => {
+    try {
+      const res = await Project.applyAttributes('test', projectId, { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect404(errRes);
+    }
+  });
+
+  it('Should return 404 for project ID not found', async () => {
+    try {
+      const res = await Project.applyAttributes(orgId1, 'test', { requestBody: reqBody });
+    } catch (errRes) {
+      utilFunctions.expect422(errRes);
+    }
+  });
+
+  it('Should add the attributes', async () => {
+    const res = await Project.applyAttributes(orgId1, projectId, { requestBody: reqBody });
+    utilFunctions.expect200(res);
+  });
+});

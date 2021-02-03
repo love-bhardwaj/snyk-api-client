@@ -38,4 +38,15 @@ export default {
     expect(errRes.error).to.not.be.null;
     expect(errRes.snykRequestId).to.not.be.null;
   },
+  expect422: (errRes: any) => {
+    expect(errRes).to.exist;
+    expect(errRes.success).to.be.false;
+    expect(errRes.httpCode).to.be.equal(422);
+    expect(errRes.error).to.not.be.null;
+    expect(errRes.snykRequestId).to.not.be.null;
+  },
+  expectErr: (errRes: any) => {
+    expect(errRes).to.exist;
+    expect(errRes).to.not.be.null;
+  },
 };
