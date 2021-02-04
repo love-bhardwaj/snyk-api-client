@@ -120,4 +120,37 @@ export default {
   deleteTagFromGroup: (groupId: string): string => {
     return `group/${groupId}/tags/delete`;
   },
+  listOrgs: (): string => {
+    return 'orgs';
+  },
+  createNewOrg: (): string => {
+    return 'orgs';
+  },
+  getOrgsNotiSettings: (orgId: string): string => {
+    return `org/${orgId}/notification-settings`;
+  },
+  setOrgsNotiSettings: (orgId: string): string => {
+    return `org/${orgId}/notification-settings`;
+  },
+  inviteUserToOrg: (orgId: string): string => {
+    return `org/${orgId}/invite`;
+  },
+  listOrgMembers: (orgId: string, queryParams: { includeGroupAdmins?: boolean }): string => {
+    return queryParams!! ? `org/${orgId}/members?${getQueryString(queryParams)}` : `org/orgId/members`;
+  },
+  viewOrgSettings: (orgId: string): string => {
+    return `org/${orgId}/settings`;
+  },
+  updateOrgSettings: (orgId: string): string => {
+    return `org/${orgId}/settings`;
+  },
+  updateMemberRole: (orgId: string, userId: string): string => {
+    return `org/${orgId}/members/${userId}`;
+  },
+  removeMemberFromOrg: (orgId: string, userId: string): string => {
+    return `org/${orgId}/members/${userId}`;
+  },
+  removeOrg: (orgId: string): string => {
+    return `org/${orgId}`;
+  },
 };
