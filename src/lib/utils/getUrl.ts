@@ -136,7 +136,7 @@ export default {
     return `org/${orgId}/invite`;
   },
   listOrgMembers: (orgId: string, queryParams: { includeGroupAdmins?: boolean }): string => {
-    return queryParams!! ? `org/${orgId}/members?${getQueryString(queryParams)}` : `org/orgId/members`;
+    return queryParams!! ? `org/${orgId}/members?${getQueryString(queryParams)}` : `org/${orgId}/members`;
   },
   viewOrgSettings: (orgId: string): string => {
     return `org/${orgId}/settings`;

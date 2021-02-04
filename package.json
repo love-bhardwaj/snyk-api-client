@@ -15,7 +15,8 @@
     "test-general": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/general/*.test.ts'",
     "test-project": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/project/*.test.ts'",
     "test-user": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/user/*.test.ts'",
-    "test-group": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/group/*.test.ts'"
+    "test-group": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/group/*.test.ts'",
+    "test-org": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/org/*.test.ts'"
   },
   "keywords": [],
   "author": {

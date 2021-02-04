@@ -49,4 +49,7 @@ export default {
     expect(errRes).to.exist;
     expect(errRes).to.not.be.null;
   },
+  expectToNotExist: (res: any) => {
+    expect(res).to.not.exist;
+  },
 };
