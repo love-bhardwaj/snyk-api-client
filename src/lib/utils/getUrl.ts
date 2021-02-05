@@ -102,6 +102,7 @@ export default {
   applyAttributes: (orgId: string, projectId: string): string => {
     return `org/${orgId}/project/${projectId}/attributes`;
   },
+  // Group
   viewGroupSettings: (groupId: string): string => {
     return `group/${groupId}/settings`;
   },
@@ -120,6 +121,7 @@ export default {
   deleteTagFromGroup: (groupId: string): string => {
     return `group/${groupId}/tags/delete`;
   },
+  // Orgs
   listOrgs: (): string => {
     return 'orgs';
   },
@@ -152,5 +154,42 @@ export default {
   },
   removeOrg: (orgId: string): string => {
     return `org/${orgId}`;
+  },
+  // Integrations
+  listIntegrations: (orgId: string): string => {
+    return `org/${orgId}/integrations`;
+  },
+  addNewIntegration: (orgId: string): string => {
+    return `org/${orgId}/integrations`;
+  },
+  updateIntegration: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}`;
+  },
+  deleteCredentials: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/authentication`;
+  },
+  provisionBrokerToken: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/authentication/provision-token`;
+  },
+  switchBrokerToken: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/authentication/switch-token`;
+  },
+  cloneIntegration: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/clone`;
+  },
+  getIntegrationByType: (orgId: string, type: string): string => {
+    return `org/${orgId}/integrations/${type}`;
+  },
+  importProject: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/import`;
+  },
+  getImportJobDetails: (orgId: string, integrationId: string, jobId: string): string => {
+    return `${orgId}/integrations/${integrationId}/import/${jobId}`;
+  },
+  getIntegrationSettings: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/settings`;
+  },
+  updateIntegrationSettings: (orgId: string, integrationId: string): string => {
+    return `org/${orgId}/integrations/${integrationId}/settings`;
   },
 };
