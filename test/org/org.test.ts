@@ -1,10 +1,11 @@
-import { expect } from 'chai';
+import { expect, use } from 'chai';
 import utilFunctions from '../testUtils';
 import { Org } from '../../src/index';
 
-let orgId: string;
-let groupId: string;
-let newlyCreatedOrg: string;
+let orgId: string = 'invalid-org';
+let groupId: string = 'invalid-org';
+let newlyCreatedOrg: string = 'invalid-org';
+let userId: string = 'invalid-org';
 
 describe('GET: List all organizations user belongs to', () => {
   it('Should list all the organizations user belongs to', async () => {
@@ -113,30 +114,109 @@ describe('GET: List org members', () => {
 });
 
 describe('GET: View organization settings', () => {
-  it('Should return 404 for org ID not found');
-  it('Should return the organization settings');
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Org.viewOrgSettings('something');
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect404(error);
+    }
+  });
+  it('Should return the organization settings', async () => {
+    const res = await Org.viewOrgSettings(orgId);
+    utilFunctions.expect200(res);
+  });
 });
 
 describe('PUT: Update organization settings', () => {
-  it('Should return error for request body empty');
-  it('Should return 404 for org ID not found');
-  it('Should update the org settings');
+  const requestBody = {
+    requestAccess: {
+      enabled: false,
+    },
+  };
+
+  it('Should return error for request body empty', async () => {
+    try {
+      const res = await Org.updateOrgSettings(orgId);
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expectErr(error);
+    }
+  });
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Org.updateOrgSettings('test-something', { requestBody });
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect404(error);
+    }
+  });
+  it('Should update the org settings', async () => {
+    const res = await Org.updateOrgSettings(orgId, { requestBody });
+    utilFunctions.expect200(res);
+  });
 });
 
 describe('PUT: Update member role in organization', () => {
-  it('Should throw error if request body empty');
-  it('Should return 404 for org ID not found');
-  it('Should return 404 for user ID not found');
+  const requestBody = {
+    role: 'admin',
+  };
+
+  it('Should throw error if request body empty', async () => {
+    try {
+      const res = await Org.updateMemberRole('test', userId);
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expectErr(error);
+    }
+  });
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Org.updateMemberRole('test', userId, { requestBody });
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect404(error);
+    }
+  });
+  it('Should return 404 for user ID not found', async () => {
+    try {
+      const res = await Org.updateMemberRole(orgId, userId, { requestBody });
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect422(error);
+    }
+  });
   it('Should update the role of the member');
 });
 
 describe('DELETE: Remove member from org', () => {
-  it('Should return 404 for org ID not found');
-  it('Should return 404 for user ID not found');
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Org.removeOrgMember('test', userId);
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect404(error);
+    }
+  });
+  it('Should return 404 for user ID not found', async () => {
+    try {
+      const res = await Org.removeOrgMember(orgId, userId);
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect422(error);
+    }
+  });
   it('Should delete the user from the org');
 });
 
 describe('DELETE: Remove the org itself', () => {
-  it('Should return 404 for org ID not found');
+  it('Should return 404 for org ID not found', async () => {
+    try {
+      const res = await Org.removeOrg('test');
+      utilFunctions.expectToNotExist(res);
+    } catch (error) {
+      utilFunctions.expect404(error);
+    }
+  });
   it('Should delete the org');
 });

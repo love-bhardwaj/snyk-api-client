@@ -13,6 +13,7 @@ export default function getHttpClient(opts: RequestOpts) {
       prefixUrl: apiUrl,
       headers: {
         Authorization: `token ${apiToken}`,
+        'Content-Type': 'application/json',
       },
       responseType: 'json',
     });

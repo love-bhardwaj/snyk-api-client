@@ -9,7 +9,7 @@ export default async function getDocs(opts: RequestOpts = {}): Promise<ReturnDat
   const endpoint = '';
 
   try {
-    return await processRequest(endpoint, RequestMethod.POST, opts);
+    return await processRequest(endpoint, RequestMethod.GET, opts);
   } catch (errRes) {
     return Promise.reject(errRes);
   }
