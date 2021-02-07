@@ -8,7 +8,7 @@ let notificationSettings = {};
 (async () => {
   const { orgs } = (await User.getMyDetails()).response;
   orgId = orgs[2].id;
-  const { projects } = (await Project.getAllProjects(orgId, {})).response;
+  const { projects } = (await Project.getAllProjects({ orgId: orgId })).response;
   projectId = projects[0].id;
 })();
 
@@ -36,7 +36,7 @@ describe('GET: My user details', () => {
 describe('GET: Get org notification settings', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await User.getOrgNotiSettings('test');
+      await User.getOrgNotiSettings({ orgId: 'something-invalid' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -45,7 +45,7 @@ describe('GET: Get org notification settings', () => {
   it('Should return org notification data', async () => {
     // const { orgs } = (await User.getMyDetails()).response;
     // const orgId = orgs[0].id;
-    const res = await User.getOrgNotiSettings(orgId);
+    const res = await User.getOrgNotiSettings({ orgId: orgId });
     utilFunctions.expect200(res);
   });
 });
@@ -70,14 +70,14 @@ describe('PUT: Modify organization notification settings', () => {
 
   it('Should return 404 for org not found', async () => {
     try {
-      await User.modifyOrgNotiSettings('test', { test: true });
+      await User.modifyOrgNotiSettings({ orgId: 'something-invalid' }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
 
   it('Should return org notification data', async () => {
-    const res = await User.modifyOrgNotiSettings(orgId, reqBody);
+    const res = await User.modifyOrgNotiSettings({ orgId }, { requestBody: reqBody });
     utilFunctions.expect200(res);
   });
 });
@@ -85,20 +85,20 @@ describe('PUT: Modify organization notification settings', () => {
 describe('GET: Project notification settings', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await User.getProjNotiSettings('test', 'test');
+      await User.getProjNotiSettings({ orgId: 'something-invalid', projectId: 'something-invalid' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
-      await User.getProjNotiSettings(orgId, 'test');
+      await User.getProjNotiSettings({ orgId, projectId: 'something-invalid' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return project notification data', async () => {
-    const res = await User.getProjNotiSettings(orgId, projectId);
+    const res = await User.getProjNotiSettings({ orgId, projectId });
     utilFunctions.expect200(res);
     notificationSettings = res.response;
   });
@@ -115,14 +115,17 @@ describe('PUT: Modify project notification settings', () => {
 
   it('Should return 404 for org ID not found', async () => {
     try {
-      await User.modifyProjNotiSettings('test', 'test', reqBody);
+      await User.modifyProjNotiSettings(
+        { orgId: 'something-invalid', projectId: 'something-invalid' },
+        { requestBody: reqBody },
+      );
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
-      await User.modifyProjNotiSettings(orgId, 'test', reqBody);
+      await User.modifyProjNotiSettings({ orgId, projectId: 'test' }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -135,7 +138,7 @@ describe('PUT: Modify project notification settings', () => {
         issueType: 'vuln',
       },
     };
-    const res = await User.modifyProjNotiSettings(orgId, projectId, projNotiSettings);
+    const res = await User.modifyProjNotiSettings({ orgId, projectId }, { requestBody: projNotiSettings });
     utilFunctions.expect200(res);
   });
 });

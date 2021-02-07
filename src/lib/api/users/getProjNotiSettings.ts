@@ -12,10 +12,10 @@ import getRequestId from '../../utils/getRequestId';
  * @param opts Options to override configs such as API token(Optional)
  */
 export default async function getProjectNotiSettings(
-  orgId: string,
-  projectId: string,
+  data: { orgId: string; projectId: string },
   opts: RequestOpts = {},
 ): Promise<ReturnData> {
+  const { orgId, projectId } = data;
   const endpoint = config.getProjNotiSettings(orgId, projectId);
   try {
     return await processRequest(endpoint, RequestMethod.GET, opts);

@@ -7,7 +7,8 @@ import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
  * @param userId Snyk user ID for which you want to get the details
  * @param opts Options to override configs such as API token(Optional)
  */
-export default async function getUserDetails(userId: string, opts: RequestOpts = {}): Promise<ReturnData> {
+export default async function getUserDetails(data: { userId: string }, opts: RequestOpts = {}): Promise<ReturnData> {
+  const { userId } = data;
   const endpoint = getUrl.getUserDetails(userId);
 
   try {
