@@ -1,9 +1,9 @@
 import got from 'got';
-import { RequestOpts } from '../../types/types';
+import { ReqOpts } from '../../types/types';
 import getApiToken from './getApiToken';
 import getApiUrl from './getApiUrl';
 
-export default function getHttpClient(opts: RequestOpts) {
+export default function getHttpClient(opts: ReqOpts) {
   // TODO: Should move get API token function call here
   try {
     const apiUrl = getApiUrl(opts);

@@ -1,8 +1,8 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, RequestMethod, ReturnData } from '../../../types/types';
+import { ReqOpts, RequestMethod, ReturnData } from '../../../types/types';
 
-export default async (data: { orgId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+export default async (data: { orgId: string }, opts: ReqOpts = {}): Promise<ReturnData> => {
   const { orgId } = data;
   const endpoint = getUrl.viewOrgSettings(orgId);
 

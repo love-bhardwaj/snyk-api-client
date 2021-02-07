@@ -1,8 +1,8 @@
 import ClientSettings from '../config/clientSettings';
-import { RequestOpts } from '../../types/types';
+import { ReqOpts } from '../../types/types';
 import { UrlNotSetError } from '../../errors/errors';
 
-export default function getApiUrl(opts: RequestOpts) {
+export default function getApiUrl(opts: ReqOpts) {
   let baseUrl, baseApiPath;
   baseUrl = opts.baseUrl || ClientSettings.getBaseUrl();
   baseApiPath = opts.baseApiPath || ClientSettings.getBaseApiPath();

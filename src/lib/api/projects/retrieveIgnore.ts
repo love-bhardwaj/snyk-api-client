@@ -1,6 +1,6 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 export default async (
   data: {
@@ -8,7 +8,7 @@ export default async (
     projectId: string;
     issueId: string;
   },
-  opts: RequestOpts = {},
+  opts: ReqOpts = {},
 ): Promise<ReturnData> => {
   const { orgId, projectId, issueId } = data;
   const endpoint = getUrl.retrieveIgnore(orgId, projectId, issueId);

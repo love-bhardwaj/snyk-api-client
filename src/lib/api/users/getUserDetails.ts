@@ -1,13 +1,13 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-details/get-user-details
  * @param userId Snyk user ID for which you want to get the details
  * @param opts Options to override configs such as API token(Optional)
  */
-export default async function getUserDetails(data: { userId: string }, opts: RequestOpts = {}): Promise<ReturnData> {
+export default async function getUserDetails(data: { userId: string }, opts: ReqOpts = {}): Promise<ReturnData> {
   const { userId } = data;
   const endpoint = getUrl.getUserDetails(userId);
 

@@ -1,7 +1,7 @@
 import config from '../../utils/getUrl';
 import httpClient from '../../utils/httpClient';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 import getApiToken from '../../utils/getApiToken';
 import getRequestId from '../../utils/getRequestId';
 
@@ -13,7 +13,7 @@ import getRequestId from '../../utils/getRequestId';
  */
 export default async function getProjectNotiSettings(
   data: { orgId: string; projectId: string },
-  opts: RequestOpts = {},
+  opts: ReqOpts = {},
 ): Promise<ReturnData> {
   const { orgId, projectId } = data;
   const endpoint = config.getProjNotiSettings(orgId, projectId);

@@ -1,10 +1,10 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
-import { RequestMethod, RequestOpts, ReturnData } from '../../../types/types';
+import { RequestMethod, ReqOpts, ReturnData } from '../../../types/types';
 
 export default async (
   data: { orgId: string; integrationId: string; jobId: string },
-  opts: RequestOpts = {},
+  opts: ReqOpts = {},
 ): Promise<ReturnData> => {
   const { orgId, integrationId, jobId } = data;
 

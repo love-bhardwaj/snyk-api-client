@@ -1,6 +1,6 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/aggregated-project-issues/list-all-aggregated-issues
@@ -13,7 +13,7 @@ export default async (
     orgId: string;
     projectId: string;
   },
-  opts: RequestOpts = {},
+  opts: ReqOpts = {},
 ): Promise<ReturnData> => {
   const { orgId, projectId } = data;
   const endpoint = getUrl.getAggIssues(orgId, projectId);

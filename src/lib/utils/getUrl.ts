@@ -1,7 +1,4 @@
-const BASE_URL = 'https://snyk.io/api/v1';
-// const BASE_URL = 'https://google.com';
-// const BASE_URL = 'https://googley.com';
-export { BASE_URL };
+import { ListDepsQueryParams, ListDepsReqOpts } from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
 export default {
@@ -191,5 +188,8 @@ export default {
   },
   updateIntegrationSettings: (orgId: string, integrationId: string): string => {
     return `org/${orgId}/integrations/${integrationId}/settings`;
+  },
+  listAllDependencies: (orgId: string, queryParams: ListDepsQueryParams = {}): string => {
+    return !!queryParams ? `org/${orgId}/dependencies?${getQueryString(queryParams)}` : `org/${orgId}/dependencies`;
   },
 };

@@ -1,10 +1,10 @@
 import getUrl from '../../utils/getUrl';
 import isObjectEmpty from '../../utils/isObjectEmpty';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 import { RequestBodyEmpty } from '../../../errors/errors';
 
-export default async (data: { groupId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+export default async (data: { groupId: string }, opts: ReqOpts = {}): Promise<ReturnData> => {
   if (!opts.requestBody || isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
   const { groupId } = data;

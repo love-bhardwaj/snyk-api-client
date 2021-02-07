@@ -1,5 +1,5 @@
 import getUrl from '../../utils/getUrl';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
 
 /**
@@ -13,7 +13,7 @@ export default async (
     orgId: string;
     projectId: string;
   },
-  opts: RequestOpts = {},
+  opts: ReqOpts = {},
 ): Promise<ReturnData> => {
   const { orgId, projectId } = data;
   const endpoint = getUrl.activateProject(orgId, projectId);

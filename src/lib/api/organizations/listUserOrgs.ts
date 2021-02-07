@@ -1,8 +1,8 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
-import { RequestOpts, RequestMethod, ReturnData } from '../../../types/types';
+import { ReqOpts, RequestMethod, ReturnData } from '../../../types/types';
 
-export default async (opts: RequestOpts = {}): Promise<ReturnData> => {
+export default async (opts: ReqOpts = {}): Promise<ReturnData> => {
   const endpoint = getUrl.listOrgs();
 
   try {

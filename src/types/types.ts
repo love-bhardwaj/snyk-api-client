@@ -13,17 +13,23 @@ export interface ReturnData {
   snykRequestId: string | null;
 }
 
-export interface QueryParameters {
-  perPage?: string;
-  page?: string;
-}
-
-export interface RequestOpts {
+export interface ReqOpts {
   apiToken?: string;
   baseUrl?: string;
   baseApiPath?: string;
   requestBody?: any;
   queryParams?: any;
+}
+
+export interface ListDepsQueryParams {
+  sortBy?: string;
+  order?: string;
+  page?: string | number;
+  perPage?: string | number;
+}
+
+export interface ListDepsReqOpts extends ReqOpts {
+  queryParams?: ListDepsQueryParams;
 }
 
 export interface ClientOpts {

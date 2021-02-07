@@ -1,9 +1,9 @@
 import httpClient from '../utils/httpClient';
 import getApiToken from '../utils/getApiToken';
-import { RequestOpts, ReturnData, RequestMethod } from '../../types/types';
+import { ReqOpts, ReturnData, RequestMethod } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
 
-export default async (endpoint: string, method: RequestMethod, opts: RequestOpts = {}): Promise<ReturnData> => {
+export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {}): Promise<ReturnData> => {
   let snykRequestId = null,
     response,
     httpCode;
