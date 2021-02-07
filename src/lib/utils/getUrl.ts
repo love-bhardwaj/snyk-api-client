@@ -1,4 +1,4 @@
-import { ListDepsQueryParams, ListDepsReqOpts } from '../../types/types';
+import { ListDepsQueryParams, ListLicenseQueryParams } from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
 export default {
@@ -191,5 +191,8 @@ export default {
   },
   listAllDependencies: (orgId: string, queryParams: ListDepsQueryParams = {}): string => {
     return !!queryParams ? `org/${orgId}/dependencies?${getQueryString(queryParams)}` : `org/${orgId}/dependencies`;
+  },
+  listAllLicenses: (orgId: string, queryParams: ListLicenseQueryParams = {}): string => {
+    return !!queryParams ? `org/${orgId}/licenses?${getQueryString(queryParams)}` : `org/${orgId}/licenses`;
   },
 };

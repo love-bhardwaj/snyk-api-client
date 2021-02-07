@@ -1,4 +1,5 @@
 import { HttpError } from 'errors/errors';
+import integrations from 'lib/api/integrations';
 
 export interface httpErrorData {
   message: string;
@@ -30,6 +31,15 @@ export interface ListDepsQueryParams {
 
 export interface ListDepsReqOpts extends ReqOpts {
   queryParams?: ListDepsQueryParams;
+}
+
+export interface ListLicenseQueryParams {
+  sortBy?: string;
+  order?: string;
+}
+
+export interface ListLicenseReqOpts extends ReqOpts {
+  queryParams?: ListLicenseQueryParams;
 }
 
 export interface ClientOpts {

@@ -6,5 +6,6 @@ import Org from './lib/api/organizations/index';
 import Project from './lib/api/projects/index';
 import Integration from './lib/api/integrations/index';
 import Dependency from './lib/api/dependency/index';
+import License from './lib/api/license/index';
 
-export { ClientConfig, General, User, Project, Group, Org, Integration, Dependency };
+export { ClientConfig, General, User, Project, Group, Org, Integration, Dependency, License };
