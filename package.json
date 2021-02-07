@@ -19,7 +19,8 @@
     "test-org": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/org/*.test.ts'",
     "test-integration": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/integration/*.test.ts'",
     "test-dependency": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/dependency/*.test.ts'",
-    "test-license": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/license/*.test.ts'"
+    "test-license": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/license/*.test.ts'",
+    "test-entitlement": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/entitlement/*.test.ts'"
   },
   "keywords": [],
   "author": {

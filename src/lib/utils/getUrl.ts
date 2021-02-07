@@ -195,4 +195,10 @@ export default {
   listAllLicenses: (orgId: string, queryParams: ListLicenseQueryParams = {}): string => {
     return !!queryParams ? `org/${orgId}/licenses?${getQueryString(queryParams)}` : `org/${orgId}/licenses`;
   },
+  listAllEntitlements: (orgId: string): string => {
+    return `org/${orgId}/entitlements`;
+  },
+  getEntitlementValue: (orgId: string, entitlementKey: string): string => {
+    return `org/${orgId}/entitlement/${entitlementKey}`;
+  },
 };
