@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { User, Project } from '../src/index';
 
 export default {
   expect200: (res: any) => {
@@ -51,5 +52,17 @@ export default {
   },
   expectToNotExist: (res: any) => {
     expect(res).to.not.exist;
+  },
+  getOrgId: async (): Promise<string> => {
+    const { orgs } = (await User.getMyDetails()).response;
+    const orgId = orgs[2].id;
+    return Promise.resolve(orgId);
+  },
+  getProjectId: async (): Promise<string> => {
+    const { orgs } = (await User.getMyDetails()).response;
+    const orgId = orgs[2].id;
+    const { projects } = (await Project.getAllProjects(orgId, {})).response;
+    const projectId = projects[0].id;
+    return Promise.resolve(projectId);
   },
 };
