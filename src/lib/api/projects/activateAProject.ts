@@ -8,11 +8,14 @@ import processRequest from '../../utils/processRequest';
  * @param projectId Snyk project ID which is to be activated
  * @param opts options to override configs such as API token(optional)
  */
-export default async function activateAProject(
-  orgId: string,
-  projectId: string,
+export default async (
+  data: {
+    orgId: string;
+    projectId: string;
+  },
   opts: RequestOpts = {},
-): Promise<ReturnData> {
+): Promise<ReturnData> => {
+  const { orgId, projectId } = data;
   const endpoint = getUrl.activateProject(orgId, projectId);
 
   try {
@@ -20,4 +23,4 @@ export default async function activateAProject(
   } catch (errRes) {
     return Promise.reject(errRes);
   }
-}
+};

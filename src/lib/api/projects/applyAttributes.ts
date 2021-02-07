@@ -1,11 +1,13 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
+import isObjectEmpty from '../../utils/isObjectEmpty';
 import { RequestBodyEmpty } from '../../../errors/errors';
 import { RequestOpts, RequestMethod, ReturnData } from '../../../types/types';
 
-export default async (orgId: string, projectId: string, opts: RequestOpts = {}): Promise<ReturnData> => {
-  if (!opts.requestBody) throw new RequestBodyEmpty();
+export default async (data: { orgId: string; projectId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+  if (!opts.requestBody || isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
+  const { orgId, projectId } = data;
   const endpoint = getUrl.applyAttributes(orgId, projectId);
 
   try {

@@ -18,7 +18,7 @@ describe('GET: View group settings', () => {
     */
   });
   it('Should return the group settings', async () => {
-    const res = await Group.viewGroupSettings(groupId);
+    const res = await Group.viewGroupSettings({ groupId });
     utilFunctions.expect200(res);
   });
 });
@@ -33,7 +33,7 @@ describe('PUT: Update group settings', () => {
 
   it('Should throw error for request body empty', async () => {
     try {
-      const res = await Group.viewGroupSettings(groupId);
+      const res = await Group.viewGroupSettings({ groupId });
       expect(res).to.not.exist;
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -54,14 +54,14 @@ describe('PUT: Update group settings', () => {
   });
 
   it('Should successfully update the group settings', async () => {
-    const res = await Group.viewGroupSettings(groupId, { requestBody: reqBody });
+    const res = await Group.viewGroupSettings({ groupId }, { requestBody: reqBody });
     utilFunctions.expect200(res);
   });
 });
 
 describe('GET: List all the members in a group', () => {
   it('Should return 404 for group ID not found', async () => {
-    //   Another error returns 500 for internal error
+    //   Another error returns 500 for internal error, possible bug
     // try {
     //   const res = await Group.listMembersInGroup('some-error');
     //   expect(res).to.not.exist;
@@ -72,7 +72,7 @@ describe('GET: List all the members in a group', () => {
   });
 
   it('Should list the members of the group', async () => {
-    const res = await Group.listMembersInGroup(groupId);
+    const res = await Group.listMembersInGroup({ groupId });
     utilFunctions.expect200(res);
   });
 });
@@ -82,7 +82,7 @@ describe('POST: Should member from one org to another in same group', () => {});
 
 describe('GET: List all tags for a group', () => {
   it('Should return all the tags for the group', async () => {
-    const res = await Group.listAllTagsInGroup(groupId, { queryParams: { perPage: 10, page: 1 } });
+    const res = await Group.listAllTagsInGroup({ groupId }, { queryParams: { perPage: 10, page: 1 } });
     utilFunctions.expect200(res);
   });
 });

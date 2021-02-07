@@ -1,8 +1,9 @@
 import getUrl from '../../utils/getUrl';
-import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
+import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 
-export default async (groupId: string, opts: RequestOpts = {}): Promise<ReturnData> => {
+export default async (data: { groupId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+  const { groupId } = data;
   const endpoint = getUrl.viewGroupSettings(groupId);
 
   try {

@@ -2,7 +2,8 @@ import getUrl from '../../utils/getUrl';
 import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
 
-export default async (groupId: string, opts: RequestOpts = {}) => {
+export default async (data: { groupId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+  const { groupId } = data;
   const endpoint = getUrl.listMembersInGroup(groupId);
 
   try {

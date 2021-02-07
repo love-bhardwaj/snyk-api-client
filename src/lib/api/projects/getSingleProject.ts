@@ -8,11 +8,14 @@ import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
  * @param projectId Project ID
  * @param opts Options to override configs such as API token(optional)
  */
-export default async function getSingleProject(
-  orgId: string,
-  projectId: string,
+export default async (
+  data: {
+    orgId: string;
+    projectId: string;
+  },
   opts: RequestOpts = {},
-): Promise<ReturnData> {
+): Promise<ReturnData> => {
+  const { orgId, projectId } = data;
   const endpoint = getUrl.getSingleProject(orgId, projectId);
 
   try {
@@ -20,4 +23,4 @@ export default async function getSingleProject(
   } catch (errRes) {
     return Promise.reject(errRes);
   }
-}
+};

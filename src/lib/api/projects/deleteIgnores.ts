@@ -3,11 +3,14 @@ import processRequest from '../../utils/processRequest';
 import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 export default async (
-  orgId: string,
-  projectId: string,
-  ignoreId: string,
+  data: {
+    orgId: string;
+    projectId: string;
+    ignoreId: string;
+  },
   opts: RequestOpts = {},
 ): Promise<ReturnData> => {
+  const { orgId, projectId, ignoreId } = data;
   const endpoint = getUrl.deleteIgnore(orgId, projectId, ignoreId);
 
   try {

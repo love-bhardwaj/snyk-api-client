@@ -8,11 +8,14 @@ import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
  * @param projectId Snyk project ID
  * @param opts options to pass data such as request body and API token
  */
-export default async function getAggProjectIssues(
-  orgId: string,
-  projectId: string,
+export default async (
+  data: {
+    orgId: string;
+    projectId: string;
+  },
   opts: RequestOpts = {},
-): Promise<ReturnData> {
+): Promise<ReturnData> => {
+  const { orgId, projectId } = data;
   const endpoint = getUrl.getAggIssues(orgId, projectId);
 
   try {
@@ -20,4 +23,4 @@ export default async function getAggProjectIssues(
   } catch (errRes) {
     return Promise.reject(errRes);
   }
-}
+};

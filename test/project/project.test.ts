@@ -16,21 +16,21 @@ let ignoreId: string;
 describe('GET: All projects', () => {
   it('Should return 404 for org not found', async () => {
     try {
-      const res = await Project.getAllProjects('test', {});
+      const res = await Project.getAllProjects({ orgId: 'something-invalid' }, {});
     } catch (errorRes) {
       utilFunctions.expect404(errorRes);
     }
   });
   it('Should return 401 for invalid API token', async () => {
     try {
-      const res = await Project.getAllProjects('test', {}, { apiToken: 'test' });
+      const res = await Project.getAllProjects({ orgId: 'something-invalid' }, { apiToken: 'test' });
     } catch (errRes) {
       utilFunctions.expect401(errRes);
     }
   });
 
   it('Should return list of projects', async () => {
-    const res = await Project.getAllProjects(orgId1, {});
+    const res = await Project.getAllProjects({ orgId: orgId1 }, {});
     utilFunctions.expect200(res);
     projectId = res.response.projects[0].id;
   });
@@ -39,7 +39,7 @@ describe('GET: All projects', () => {
 describe('GET: A single project with project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.getSingleProject('test', projectId);
+      await Project.getSingleProject({ orgId: 'something-invalid', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -47,7 +47,7 @@ describe('GET: A single project with project ID', () => {
 
   it('Should return 400 for invalid project ID', async () => {
     try {
-      await Project.getSingleProject(orgId1, 'test');
+      await Project.getSingleProject({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect400(errRes);
     }
@@ -55,14 +55,14 @@ describe('GET: A single project with project ID', () => {
 
   it('Should return 401 for invalid auth token', async () => {
     try {
-      await Project.getSingleProject(orgId1, projectId, { apiToken: 'test' });
+      await Project.getSingleProject({ orgId: orgId1, projectId }, { apiToken: 'test' });
     } catch (errRes) {
       utilFunctions.expect401(errRes);
     }
   });
 
   it('Should return the project', async () => {
-    const res = await Project.getSingleProject(orgId1, projectId);
+    const res = await Project.getSingleProject({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
     expect(res.error).to.be.null;
   });
@@ -71,7 +71,7 @@ describe('GET: A single project with project ID', () => {
 describe('PUT: Update a project with project ID', () => {
   it('Should return 404 for org with given ID not found', async () => {
     try {
-      const res = await Project.updateAProject(orgId1, projectId, {});
+      const res = await Project.updateAProject({ orgId: orgId1, projectId }, {});
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -79,14 +79,14 @@ describe('PUT: Update a project with project ID', () => {
 
   it('Should return 400 for project with given ID not found', async () => {
     try {
-      await Project.updateAProject(orgId1, 'test', {});
+      await Project.updateAProject({ orgId: orgId1, projectId: 'test' }, {});
     } catch (errRes) {
       utilFunctions.expect400(errRes);
     }
   });
 
   it('Should update the project successfully', async () => {
-    const res = await Project.updateAProject(orgId1, projectId, {});
+    const res = await Project.updateAProject({ orgId: orgId1, projectId }, {});
     utilFunctions.expect200(res);
   });
 });
@@ -94,14 +94,14 @@ describe('PUT: Update a project with project ID', () => {
 describe('DELETE: Delete project with the project ID', async () => {
   it('Should return 404 for org not found', async () => {
     try {
-      const res = await Project.deleteAProject('test', projectId);
+      const res = await Project.deleteAProject({ orgId: 'test', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should retrun 404 for project not found', async () => {
     try {
-      const res = await Project.deleteAProject(orgId1, 'test');
+      const res = await Project.deleteAProject({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -117,21 +117,21 @@ describe('DELETE: Delete project with the project ID', async () => {
 describe('POST: Deactivate a project with project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Project.deactivateAProject('test', projectId);
+      const res = await Project.deactivateAProject({ orgId: 'test', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
-      const res = await Project.deactivateAProject(orgId1, 'test');
+      const res = await Project.deactivateAProject({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
 
   it('Should deactivate the project successfully', async () => {
-    const res = await Project.deactivateAProject(orgId1, projectId);
+    const res = await Project.deactivateAProject({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
   });
 });
@@ -139,21 +139,21 @@ describe('POST: Deactivate a project with project ID', () => {
 describe('POST: Activate a project with project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Project.activateAProject('test', projectId);
+      const res = await Project.activateAProject({ orgId: 'test', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
-      const res = await Project.activateAProject(orgId1, 'test');
+      const res = await Project.activateAProject({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
 
   it('Should deactivate the project successfully', async () => {
-    const res = await Project.activateAProject(orgId1, projectId);
+    const res = await Project.activateAProject({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
   });
 });
@@ -161,20 +161,20 @@ describe('POST: Activate a project with project ID', () => {
 describe('POST: Get all aggregate issues for a project', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Project.getAggProjectIssues('test', projectId);
+      const res = await Project.getAggProjectIssues({ orgId: 'something-invalid', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
-      const res = await Project.getAggProjectIssues(orgId1, 'test');
+      const res = await Project.getAggProjectIssues({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return all project issues', async () => {
-    const res = await Project.getAggProjectIssues(orgId1, projectId);
+    const res = await Project.getAggProjectIssues({ orgId: orgId1, projectId });
     // console.log('Aggregate issue list: ', res.response);
     utilFunctions.expect200(res);
   });
@@ -183,7 +183,7 @@ describe('POST: Get all aggregate issues for a project', () => {
 describe('GET: Get project deph graph by project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.getProjectDepGraph('test', projectId);
+      await Project.getProjectDepGraph({ orgId: 'something-invalid', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -191,14 +191,14 @@ describe('GET: Get project deph graph by project ID', () => {
 
   it('Should return 404 for project ID not found', async () => {
     try {
-      await Project.getProjectDepGraph(orgId1, 'test');
+      await Project.getProjectDepGraph({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
 
   it('Should return dep graph for the project', async () => {
-    const res = await Project.getProjectDepGraph(orgId1, projectId);
+    const res = await Project.getProjectDepGraph({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
   });
 });
@@ -206,7 +206,7 @@ describe('GET: Get project deph graph by project ID', () => {
 describe('GET: List all ignores for a project', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.listAllIgnores('test', projectId);
+      await Project.listAllIgnores({ orgId: 'something-invalid', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -225,7 +225,7 @@ describe('GET: List all ignores for a project', () => {
     */
   });
   it('Should return the list of all ignores for the project', async () => {
-    const res = await Project.listAllIgnores(orgId1, projectId);
+    const res = await Project.listAllIgnores({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
   });
 });
@@ -233,7 +233,7 @@ describe('GET: List all ignores for a project', () => {
 describe("GET: Retrieve a ignore by it's issue id", () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.retrieveIgnore('test', projectId, 'test');
+      await Project.retrieveIgnore({ orgId: orgId1, projectId, issueId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -267,20 +267,20 @@ describe('DELETE: Delete ignores', () => {
 describe('GET: List Jira issues with project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.listAllJiraIssues('test', projectId);
+      await Project.listAllJiraIssues({ orgId: 'something-invalid', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 404 for project ID not found', async () => {
     try {
-      await Project.listAllJiraIssues(orgId1, 'test');
+      await Project.listAllJiraIssues({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return all the Jira issues', async () => {
-    const res = await Project.listAllJiraIssues(orgId1, projectId);
+    const res = await Project.listAllJiraIssues({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
   });
 });
@@ -288,7 +288,7 @@ describe('GET: List Jira issues with project ID', () => {
 describe('GET: List project settings for a given project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.listProjectSettings('test', projectId);
+      await Project.listProjectSettings({ orgId: 'test', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -296,14 +296,14 @@ describe('GET: List project settings for a given project ID', () => {
 
   it('Should return 404 from project ID not found', async () => {
     try {
-      await Project.listProjectSettings(orgId1, 'test');
+      await Project.listProjectSettings({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
 
   it('Should return the project settings', async () => {
-    const res = await Project.listProjectSettings(orgId1, projectId);
+    const res = await Project.listProjectSettings({ orgId: orgId1, projectId });
     utilFunctions.expect200(res);
   });
 });
@@ -311,7 +311,7 @@ describe('GET: List project settings for a given project ID', () => {
 describe('PUT: Update project settings', () => {
   it('Should throw an error is request body empty', async () => {
     try {
-      await Project.updateProjectSettings(orgId1, projectId);
+      await Project.updateProjectSettings({ orgId: orgId1, projectId });
     } catch (err) {
       expect(err).to.exist;
       expect(err).to.not.be.null;
@@ -320,7 +320,11 @@ describe('PUT: Update project settings', () => {
 
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.updateProjectSettings('test', projectId, { requestBody: {} });
+      const res = await Project.updateProjectSettings(
+        { orgId: 'something-invalid', projectId },
+        { requestBody: { test: 'test' } },
+      );
+      utilFunctions.expectToNotExist(res);
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -328,9 +332,9 @@ describe('PUT: Update project settings', () => {
 
   it('Should return 404 from project ID not found', async () => {
     try {
-      await Project.updateProjectSettings(orgId1, 'test', { requestBody: {} });
+      await Project.updateProjectSettings({ orgId: orgId1, projectId: 'test' }, { requestBody: { test: 'test' } });
     } catch (errRes) {
-      utilFunctions.expect404(errRes);
+      utilFunctions.expect400(errRes);
     }
   });
 
@@ -340,21 +344,8 @@ describe('PUT: Update project settings', () => {
       autoDepUpgradeIgnoredDependencies: ['tap', 'ava'],
       autoDepUpgradeEnabled: false,
       autoDepUpgradeMinAge: 21,
-      pullRequestFailOnAnyVulns: false,
-      pullRequestFailOnlyForHighSeverity: true,
-      pullRequestTestEnabled: true,
-      pullRequestAssignment: {
-        enabled: true,
-        type: 'manual',
-        assignees: ['username'],
-      },
-      autoRemediationPrs: {
-        freshPrsEnabled: true,
-        backlogPrsEnabled: false,
-        usePatchRemediation: false,
-      },
     };
-    const res = await Project.updateProjectSettings(orgId1, projectId, { requestBody });
+    const res = await Project.updateProjectSettings({ orgId: orgId1, projectId }, { requestBody });
     utilFunctions.expect200(res);
   });
 });
@@ -362,7 +353,7 @@ describe('PUT: Update project settings', () => {
 describe('DELETE: Project settings for given project ID', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      await Project.deleteProjectSettings('test', projectId);
+      await Project.deleteProjectSettings({ orgId: 'test', projectId });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -370,14 +361,14 @@ describe('DELETE: Project settings for given project ID', () => {
 
   it('Should return 404 for project ID not found', async () => {
     try {
-      await Project.deleteProjectSettings(orgId1, 'test');
+      await Project.deleteProjectSettings({ orgId: orgId1, projectId: 'test' });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
 
   it('Should delete the project settigns and return 200', async () => {
-    const res = await Project.deleteProjectSettings(orgId1, projectId);
+    const res = await Project.deleteProjectSettings({ orgId: orgId1, projectId });
     utilFunctions.expect204(res);
   });
 });
@@ -385,7 +376,7 @@ describe('DELETE: Project settings for given project ID', () => {
 describe('PUT: Move project on org to another', () => {
   it('Should throw an error if request body empty', async () => {
     try {
-      await Project.moveProject(orgId1, projectId);
+      await Project.moveProject({ orgId: orgId1, projectId });
     } catch (err) {
       expect(err).to.exist;
       expect(err).to.not.be.null;
@@ -393,31 +384,31 @@ describe('PUT: Move project on org to another', () => {
   });
   it('Should return 404 for source org ID not found', async () => {
     try {
-      await Project.moveProject('test', projectId, { requestBody: { targetOrgId: orgId2 } });
+      await Project.moveProject({ orgId: 'something-invalid', projectId }, { requestBody: { targetOrgId: orgId2 } });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
   });
   it('Should return 400 for target org ID not found', async () => {
     try {
-      await Project.moveProject(orgId1, projectId, { requestBody: { targetOrgId: 'test' } });
+      await Project.moveProject({ orgId: orgId1, projectId }, { requestBody: { targetOrgId: 'test' } });
     } catch (errRes) {
       utilFunctions.expect400(errRes);
     }
   });
   it('Should return 400 for project ID not found', async () => {
     try {
-      await Project.moveProject(orgId1, 'test', { requestBody: { targetOrgId: orgId2 } });
+      await Project.moveProject({ orgId: orgId1, projectId: 'test' }, { requestBody: { targetOrgId: orgId2 } });
     } catch (errRes) {
       utilFunctions.expect400(errRes);
     }
   });
 
   it('Should move project from one to another successfully', async () => {
-    const res = await Project.moveProject(orgId1, projectId, { requestBody: { targetOrgId: orgId2 } });
+    const res = await Project.moveProject({ orgId: orgId1, projectId }, { requestBody: { targetOrgId: orgId2 } });
     utilFunctions.expect200(res);
     // Move project back
-    await Project.moveProject(orgId2, projectId, { requestBody: { targetOrgId: orgId1 } });
+    await Project.moveProject({ orgId: orgId2, projectId }, { requestBody: { targetOrgId: orgId1 } });
     utilFunctions.expect200(res);
   });
 });
@@ -430,7 +421,7 @@ describe('POST: Add a tag to project', () => {
 
   it('Should return error for empty request body', async () => {
     try {
-      await Project.addATag(orgId1, projectId);
+      await Project.addATag({ orgId: orgId1, projectId });
     } catch (errRes) {
       utilFunctions.expectErr(errRes);
     }
@@ -438,7 +429,7 @@ describe('POST: Add a tag to project', () => {
 
   it('Should return 404 for orgID not found', async () => {
     try {
-      await Project.addATag('test', projectId, { requestBody: reqBody });
+      await Project.addATag({ orgId: 'something-invalid', projectId }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -446,20 +437,20 @@ describe('POST: Add a tag to project', () => {
 
   it('Should return 404 for projectID not found', async () => {
     try {
-      await Project.addATag(orgId1, 'test', { requestBody: reqBody });
+      await Project.addATag({ orgId: orgId1, projectId: 'test' }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect422(errRes);
     }
   });
 
   it('Should add the tag and return tags', async () => {
-    const res = await Project.addATag(orgId1, projectId, { requestBody: reqBody });
+    const res = await Project.addATag({ orgId: orgId1, projectId }, { requestBody: reqBody });
     utilFunctions.expect200(res);
   });
 
   it('Should return error for project tag already exists', async () => {
     try {
-      await Project.addATag(orgId1, projectId, { requestBody: reqBody });
+      await Project.addATag({ orgId: orgId1, projectId }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect422(errRes);
     }
@@ -474,7 +465,7 @@ describe('POST: Remove a trag from project', () => {
 
   it('Should return error for empty request body', async () => {
     try {
-      await Project.removeATag(orgId1, projectId);
+      await Project.removeATag({ orgId: orgId1, projectId });
     } catch (errRes) {
       utilFunctions.expectErr(errRes);
     }
@@ -482,7 +473,7 @@ describe('POST: Remove a trag from project', () => {
 
   it('Should return 404 for orgID not found', async () => {
     try {
-      await Project.removeATag('test', projectId, { requestBody: reqBody });
+      await Project.removeATag({ orgId: 'something-invalid', projectId }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -490,14 +481,14 @@ describe('POST: Remove a trag from project', () => {
 
   it('Should return 404 for projectID not found', async () => {
     try {
-      await Project.removeATag(orgId1, 'test', { requestBody: reqBody });
+      await Project.removeATag({ orgId: orgId1, projectId: 'test' }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect422(errRes);
     }
   });
 
   it('Should add the tag and return tags', async () => {
-    const res = await Project.removeATag(orgId1, projectId, { requestBody: reqBody });
+    const res = await Project.removeATag({ orgId: orgId1, projectId }, { requestBody: reqBody });
     utilFunctions.expect200(res);
   });
 });
@@ -511,7 +502,7 @@ describe('POST: Apply project attributes', () => {
 
   it('Should throw an error for request body empty', async () => {
     try {
-      const res = await Project.applyAttributes(orgId1, projectId);
+      const res = await Project.applyAttributes({ orgId: orgId1, projectId });
     } catch (error) {
       utilFunctions.expectErr(error);
     }
@@ -519,7 +510,7 @@ describe('POST: Apply project attributes', () => {
 
   it('Should return 404 for org', async () => {
     try {
-      const res = await Project.applyAttributes('test', projectId, { requestBody: reqBody });
+      const res = await Project.applyAttributes({ orgId: 'something-invalid', projectId }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -527,14 +518,14 @@ describe('POST: Apply project attributes', () => {
 
   it('Should return 404 for project ID not found', async () => {
     try {
-      const res = await Project.applyAttributes(orgId1, 'test', { requestBody: reqBody });
+      const res = await Project.applyAttributes({ orgId: orgId1, projectId: 'test' }, { requestBody: reqBody });
     } catch (errRes) {
       utilFunctions.expect422(errRes);
     }
   });
 
   it('Should add the attributes', async () => {
-    const res = await Project.applyAttributes(orgId1, projectId, { requestBody: reqBody });
+    const res = await Project.applyAttributes({ orgId: orgId1, projectId }, { requestBody: reqBody });
     utilFunctions.expect200(res);
   });
 });

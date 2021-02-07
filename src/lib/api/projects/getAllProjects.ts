@@ -5,10 +5,10 @@ import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 /**
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/all-projects/list-all-projects
  * @param orgId Org ID for which you want to get all projects
- * @param filters Filters that you would like to filter the projects by
  * @param opts Options to override configs such as API token(Optional)
  */
-export default async function getAllProjects(orgId: string, filters: any, opts: RequestOpts = {}): Promise<ReturnData> {
+export default async (data: { orgId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+  const { orgId } = data;
   const endpoint = getUrl.getAllProjects(orgId);
 
   try {
@@ -16,4 +16,4 @@ export default async function getAllProjects(orgId: string, filters: any, opts: 
   } catch (errRes) {
     return Promise.reject(errRes);
   }
-}
+};

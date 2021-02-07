@@ -1,7 +1,4 @@
 import getUrl from '../../utils/getUrl';
-import httpClient from '../../utils/httpClient';
-import getApiToken from '../../utils/getApiToken';
-import getRequestId from '../../utils/getRequestId';
 import processRequest from '../../utils/processRequest';
 import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 
@@ -11,11 +8,8 @@ import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
  * @param projectId Snyk project ID for the project that is to be deleted
  * @param opts options to override configs such as API token(optional)
  */
-export default async function deleteAProject(
-  orgId: string,
-  projectId: string,
-  opts: RequestOpts = {},
-): Promise<ReturnData> {
+export default async (data: { orgId: string; projectId: string }, opts: RequestOpts = {}): Promise<ReturnData> => {
+  const { orgId, projectId } = data;
   const endpoint = getUrl.deleteProject(orgId, projectId);
 
   try {
@@ -23,4 +17,4 @@ export default async function deleteAProject(
   } catch (errRes) {
     return Promise.reject(errRes);
   }
-}
+};

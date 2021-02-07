@@ -22,7 +22,7 @@ describe('POST: Create a new org', () => {
 describe('GET: Org notification settings', () => {
   it('Should return 404 for org not found', async () => {
     try {
-      const res = await Org.getOrgNotiSettings('test');
+      const res = await Org.getOrgNotiSettings({ orgId: 'something-invalid' });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
@@ -30,7 +30,7 @@ describe('GET: Org notification settings', () => {
   });
 
   it('Should return org notification settings', async () => {
-    const res = await Org.getOrgNotiSettings(orgId);
+    const res = await Org.getOrgNotiSettings({ orgId });
     utilFunctions.expect200(res);
   });
 });
@@ -55,7 +55,7 @@ describe('PUT: Update notification settings', () => {
 
   it('Should throw an error for request body empty', async () => {
     try {
-      const res = await Org.setOrgNotiSettings(orgId);
+      const res = await Org.setOrgNotiSettings({ orgId });
     } catch (error) {
       utilFunctions.expectErr(error);
     }
@@ -63,7 +63,7 @@ describe('PUT: Update notification settings', () => {
 
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.setOrgNotiSettings('test', { requestBody });
+      const res = await Org.setOrgNotiSettings({ orgId: 'something-invalid' }, { requestBody });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
@@ -71,7 +71,7 @@ describe('PUT: Update notification settings', () => {
   });
 
   it('Should update the org notification settings successfully', async () => {
-    const res = await Org.setOrgNotiSettings(orgId, { requestBody });
+    const res = await Org.setOrgNotiSettings({ orgId }, { requestBody });
     utilFunctions.expect200(res);
   });
 });
@@ -81,7 +81,7 @@ describe('POST: Invite members to orgs', () => {
 
   it('Should throw and error for empty request body', async () => {
     try {
-      const res = await Org.inviteUserToOrg(orgId);
+      const res = await Org.inviteUserToOrg({ orgId });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -89,7 +89,7 @@ describe('POST: Invite members to orgs', () => {
   });
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.inviteUserToOrg('something', { requestBody });
+      const res = await Org.inviteUserToOrg({ orgId: 'something-invalid' }, { requestBody });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
@@ -100,7 +100,7 @@ describe('POST: Invite members to orgs', () => {
 describe('GET: List org members', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.listMembers('something');
+      const res = await Org.listMembers({ orgId: 'something-invalid' });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
@@ -108,7 +108,7 @@ describe('GET: List org members', () => {
   });
 
   it('Should list the members of the org', async () => {
-    const res = await Org.listMembers(orgId, { queryParams: { includeGroupAdmins: true } });
+    const res = await Org.listMembers({ orgId }, { queryParams: { includeGroupAdmins: true } });
     utilFunctions.expect200(res);
   });
 });
@@ -116,14 +116,14 @@ describe('GET: List org members', () => {
 describe('GET: View organization settings', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.viewOrgSettings('something');
+      const res = await Org.viewOrgSettings({ orgId: 'something-invalid' });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
     }
   });
   it('Should return the organization settings', async () => {
-    const res = await Org.viewOrgSettings(orgId);
+    const res = await Org.viewOrgSettings({ orgId });
     utilFunctions.expect200(res);
   });
 });
@@ -137,7 +137,7 @@ describe('PUT: Update organization settings', () => {
 
   it('Should return error for request body empty', async () => {
     try {
-      const res = await Org.updateOrgSettings(orgId);
+      const res = await Org.updateOrgSettings({ orgId });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -145,14 +145,14 @@ describe('PUT: Update organization settings', () => {
   });
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.updateOrgSettings('test-something', { requestBody });
+      const res = await Org.updateOrgSettings({ orgId: 'something-invalid' }, { requestBody });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
     }
   });
   it('Should update the org settings', async () => {
-    const res = await Org.updateOrgSettings(orgId, { requestBody });
+    const res = await Org.updateOrgSettings({ orgId }, { requestBody });
     utilFunctions.expect200(res);
   });
 });
@@ -164,7 +164,7 @@ describe('PUT: Update member role in organization', () => {
 
   it('Should throw error if request body empty', async () => {
     try {
-      const res = await Org.updateMemberRole('test', userId);
+      const res = await Org.updateMemberRole({ orgId: 'something-invalid', userId });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -172,7 +172,7 @@ describe('PUT: Update member role in organization', () => {
   });
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.updateMemberRole('test', userId, { requestBody });
+      const res = await Org.updateMemberRole({ orgId: 'something-invalid', userId }, { requestBody });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
@@ -180,7 +180,7 @@ describe('PUT: Update member role in organization', () => {
   });
   it('Should return 404 for user ID not found', async () => {
     try {
-      const res = await Org.updateMemberRole(orgId, userId, { requestBody });
+      const res = await Org.updateMemberRole({ orgId, userId }, { requestBody });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect422(error);
@@ -192,7 +192,7 @@ describe('PUT: Update member role in organization', () => {
 describe('DELETE: Remove member from org', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.removeOrgMember('test', userId);
+      const res = await Org.removeOrgMember({ orgId: 'something-invalid', userId });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);
@@ -200,7 +200,7 @@ describe('DELETE: Remove member from org', () => {
   });
   it('Should return 404 for user ID not found', async () => {
     try {
-      const res = await Org.removeOrgMember(orgId, userId);
+      const res = await Org.removeOrgMember({ orgId, userId });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect422(error);
@@ -212,7 +212,7 @@ describe('DELETE: Remove member from org', () => {
 describe('DELETE: Remove the org itself', () => {
   it('Should return 404 for org ID not found', async () => {
     try {
-      const res = await Org.removeOrg('test');
+      const res = await Org.removeOrg({ orgId: 'something-invalid' });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expect404(error);

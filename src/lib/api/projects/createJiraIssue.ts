@@ -4,13 +4,16 @@ import { RequestBodyEmpty } from '../../../errors/errors';
 import { RequestOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 export default async (
-  orgId: string,
-  projectId: string,
-  issueId: string,
+  data: {
+    orgId: string;
+    projectId: string;
+    issueId: string;
+  },
   opts: RequestOpts = {},
 ): Promise<ReturnData> => {
   if (!opts.requestBody) throw new RequestBodyEmpty();
 
+  const { orgId, projectId, issueId } = data;
   const endpoint = getUrl.createJiraIssue(orgId, projectId, issueId);
 
   try {
