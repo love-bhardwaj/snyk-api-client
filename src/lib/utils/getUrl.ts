@@ -1,4 +1,18 @@
-import { ListDepsQueryParams, ListLicenseQueryParams } from '../../types/types';
+import {
+  ListDepsQueryParams,
+  ListLicenseQueryParams,
+  MavenTestQueryParams,
+  NpmTestQueryParams,
+  VendorTestQueryParams,
+  YarnTestQueryParams,
+  RubyGemTestQueryParams,
+  GradleTestQueryParams,
+  SBTTestQueryParams,
+  PipTestQueryParams,
+  ComposerQueryParams,
+  TestDepGraphQueryParams,
+  GopkgTestQueryParams,
+} from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
 export default {
@@ -189,10 +203,10 @@ export default {
   updateIntegrationSettings: (orgId: string, integrationId: string): string => {
     return `org/${orgId}/integrations/${integrationId}/settings`;
   },
-  listAllDependencies: (orgId: string, queryParams: ListDepsQueryParams = {}): string => {
+  listAllDependencies: (orgId: string, queryParams?: ListDepsQueryParams): string => {
     return !!queryParams ? `org/${orgId}/dependencies?${getQueryString(queryParams)}` : `org/${orgId}/dependencies`;
   },
-  listAllLicenses: (orgId: string, queryParams: ListLicenseQueryParams = {}): string => {
+  listAllLicenses: (orgId: string, queryParams?: ListLicenseQueryParams): string => {
     return !!queryParams ? `org/${orgId}/licenses?${getQueryString(queryParams)}` : `org/${orgId}/licenses`;
   },
   listAllEntitlements: (orgId: string): string => {
@@ -200,5 +214,83 @@ export default {
   },
   getEntitlementValue: (orgId: string, entitlementKey: string): string => {
     return `org/${orgId}/entitlement/${entitlementKey}`;
+  },
+  mavenTestPublicPackage: (
+    groupId: string,
+    artifactId: string,
+    version: string,
+    queryParams?: MavenTestQueryParams,
+  ): string => {
+    return !!queryParams
+      ? `test/maven/${groupId}/${artifactId}/${version}?${getQueryString(queryParams)}`
+      : `test/maven/${groupId}/${artifactId}/${version}`;
+  },
+  testMavenFile: (queryParams?: MavenTestQueryParams): string => {
+    return !!queryParams ? `test/maven?${getQueryString(queryParams)}` : `test/maven`;
+  },
+  testNpmPublicPackage: (packageName: string, version: string, queryParams?: NpmTestQueryParams): string => {
+    return !!queryParams
+      ? `test/npm/${packageName}/${version}?${getQueryString(queryParams)}`
+      : `test/npm/${packageName}/${version}`;
+  },
+  testNpmFile: (queryParams?: NpmTestQueryParams): string => {
+    return !!queryParams ? `test/npm?${getQueryString(queryParams)}` : `test/npm`;
+  },
+  testGopkgFile: (queryParams?: GopkgTestQueryParams): string => {
+    return !!queryParams ? `test/golangdep?${getQueryString(queryParams)}` : `test/golangdep`;
+  },
+  testVendorFile: (queryParams?: VendorTestQueryParams): string => {
+    return !!queryParams ? `test/govendor?${getQueryString(queryParams)}` : `test/govendor`;
+  },
+  testYarnFile: (queryParams?: YarnTestQueryParams): string => {
+    return !!queryParams ? `test/yarn?${getQueryString(queryParams)}` : `test/yarn`;
+  },
+  testRubGemPublicPackage: (gemName: string, version: string, queryParams?: RubyGemTestQueryParams): string => {
+    return !!queryParams
+      ? `test/rubygems/${gemName}/${version}?${getQueryString(queryParams)}`
+      : `test/rubygems/${gemName}/${version}`;
+  },
+  testRubGemFile: (queryParams?: RubyGemTestQueryParams): string => {
+    return !!queryParams ? `test/rubygems?${getQueryString(queryParams)}` : `test/rubygems`;
+  },
+  testGradlePublicPackage: (
+    group: string,
+    name: string,
+    version: string,
+    queryParams?: GradleTestQueryParams,
+  ): string => {
+    return !!queryParams
+      ? `test/gradle/${group}/${name}/${version}?${getQueryString(queryParams)}`
+      : `test/gradle/${group}/${name}/${version}`;
+  },
+  testGradleFile: (queryParams?: GradleTestQueryParams): string => {
+    return !!queryParams ? `test/gradle?${getQueryString(queryParams)}` : `test/gradle`;
+  },
+  testSbtPublicPackage: (
+    groupId: string,
+    artifactId: string,
+    version: string,
+    queryParams?: SBTTestQueryParams,
+  ): string => {
+    return !!queryParams
+      ? `test/sbt/${groupId}/${artifactId}/${version}?${getQueryString(queryParams)}`
+      : `test/sbt/${groupId}/${artifactId}/${version}`;
+  },
+  testSbtFile: (queryParams?: SBTTestQueryParams): string => {
+    return !!queryParams ? `test/sbt?${getQueryString(queryParams)}` : `test/sbt`;
+  },
+  testPipPublicPackage: (packageName: string, version: string, queryParams?: PipTestQueryParams): string => {
+    return !!queryParams
+      ? `test/pip/${packageName}/${version}?${getQueryString(queryParams)}`
+      : `test/pip/${packageName}/${version}`;
+  },
+  testPipFile: (queryParams?: PipTestQueryParams): string => {
+    return !!queryParams ? `test/pip?${getQueryString(queryParams)}` : `test/pip`;
+  },
+  testComposerPublicPackage: (queryParams?: ComposerQueryParams): string => {
+    return !!queryParams ? `test/composer?${getQueryString(queryParams)}` : `test/composer`;
+  },
+  testDepGraph: (queryParams?: TestDepGraphQueryParams): string => {
+    return !!queryParams ? `test/dep-graph?${getQueryString(queryParams)}` : `test/dep-graph`;
   },
 };

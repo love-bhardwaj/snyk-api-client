@@ -8,5 +8,6 @@ import Integration from './lib/api/integrations/index';
 import Dependency from './lib/api/dependency/index';
 import License from './lib/api/license/index';
 import Entitlement from './lib/api/entitlement/index';
+import Test from './lib/api/test/index';
 
-export { ClientConfig, General, User, Project, Group, Org, Integration, Dependency, License, Entitlement };
+export { ClientConfig, General, User, Project, Group, Org, Integration, Dependency, License, Entitlement, Test };
