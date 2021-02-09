@@ -1,7 +1,8 @@
 import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
 import { RequestBodyEmpty } from '../../../errors/errors';
-import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
+import { ReturnData, RequestMethod, ReqOptsWithBody } from '../../../types/types';
+import isObjectEmpty from '../../utils/isObjectEmpty';
 
 export default async (
   data: {
@@ -9,9 +10,9 @@ export default async (
     projectId: string;
     issueId: string;
   },
-  opts: ReqOpts = {},
+  opts: ReqOptsWithBody,
 ): Promise<ReturnData> => {
-  if (!opts.requestBody) throw new RequestBodyEmpty();
+  if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
   const { orgId, projectId, issueId } = data;
   const endpoint = getUrl.createJiraIssue(orgId, projectId, issueId);

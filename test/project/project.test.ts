@@ -16,7 +16,8 @@ let ignoreId: string;
 describe('GET: All projects', () => {
   it('Should return 404 for org not found', async () => {
     try {
-      const res = await Project.getAllProjects({ orgId: 'something-invalid' }, {});
+      const res = await Project.getAllProjects({ orgId: 'something-invalid' });
+      utilFunctions.expectToNotExist(res);
     } catch (errorRes) {
       utilFunctions.expect404(errorRes);
     }
@@ -71,7 +72,11 @@ describe('GET: A single project with project ID', () => {
 describe('PUT: Update a project with project ID', () => {
   it('Should return 404 for org with given ID not found', async () => {
     try {
-      const res = await Project.updateAProject({ orgId: orgId1, projectId }, {});
+      const res = await Project.updateAProject(
+        { orgId: 'something-invalid', projectId },
+        { requestBody: { test: 'test' } },
+      );
+      utilFunctions.expectToNotExist(res);
     } catch (errRes) {
       utilFunctions.expect404(errRes);
     }
@@ -79,14 +84,15 @@ describe('PUT: Update a project with project ID', () => {
 
   it('Should return 400 for project with given ID not found', async () => {
     try {
-      await Project.updateAProject({ orgId: orgId1, projectId: 'test' }, {});
+      const res = await Project.updateAProject({ orgId: orgId1, projectId: 'test' }, { requestBody: { test: 'test' } });
+      utilFunctions.expectToNotExist(res);
     } catch (errRes) {
       utilFunctions.expect400(errRes);
     }
   });
 
   it('Should update the project successfully', async () => {
-    const res = await Project.updateAProject({ orgId: orgId1, projectId }, {});
+    const res = await Project.updateAProject({ orgId: orgId1, projectId }, { requestBody: { test: 'test' } });
     utilFunctions.expect200(res);
   });
 });
@@ -311,7 +317,7 @@ describe('GET: List project settings for a given project ID', () => {
 describe('PUT: Update project settings', () => {
   it('Should throw an error is request body empty', async () => {
     try {
-      await Project.updateProjectSettings({ orgId: orgId1, projectId });
+      await Project.updateProjectSettings({ orgId: orgId1, projectId }, { requestBody: {} });
     } catch (err) {
       expect(err).to.exist;
       expect(err).to.not.be.null;
@@ -376,7 +382,7 @@ describe('DELETE: Project settings for given project ID', () => {
 describe('PUT: Move project on org to another', () => {
   it('Should throw an error if request body empty', async () => {
     try {
-      await Project.moveProject({ orgId: orgId1, projectId });
+      await Project.moveProject({ orgId: orgId1, projectId }, { requestBody: {} });
     } catch (err) {
       expect(err).to.exist;
       expect(err).to.not.be.null;
@@ -421,7 +427,7 @@ describe('POST: Add a tag to project', () => {
 
   it('Should return error for empty request body', async () => {
     try {
-      await Project.addATag({ orgId: orgId1, projectId });
+      await Project.addATag({ orgId: orgId1, projectId }, { requestBody: {} });
     } catch (errRes) {
       utilFunctions.expectErr(errRes);
     }
@@ -465,7 +471,7 @@ describe('POST: Remove a trag from project', () => {
 
   it('Should return error for empty request body', async () => {
     try {
-      await Project.removeATag({ orgId: orgId1, projectId });
+      await Project.removeATag({ orgId: orgId1, projectId }, { requestBody: {} });
     } catch (errRes) {
       utilFunctions.expectErr(errRes);
     }
@@ -502,7 +508,7 @@ describe('POST: Apply project attributes', () => {
 
   it('Should throw an error for request body empty', async () => {
     try {
-      const res = await Project.applyAttributes({ orgId: orgId1, projectId });
+      const res = await Project.applyAttributes({ orgId: orgId1, projectId }, { requestBody: {} });
     } catch (error) {
       utilFunctions.expectErr(error);
     }
