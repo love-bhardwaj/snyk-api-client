@@ -55,7 +55,7 @@ describe('PUT: Update notification settings', () => {
 
   it('Should throw an error for request body empty', async () => {
     try {
-      const res = await Org.setOrgNotiSettings({ orgId });
+      const res = await Org.setOrgNotiSettings({ orgId }, { requestBody: {} });
     } catch (error) {
       utilFunctions.expectErr(error);
     }
@@ -81,7 +81,7 @@ describe('POST: Invite members to orgs', () => {
 
   it('Should throw and error for empty request body', async () => {
     try {
-      const res = await Org.inviteUserToOrg({ orgId });
+      const res = await Org.inviteUserToOrg({ orgId }, { requestBody: {} });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -137,7 +137,7 @@ describe('PUT: Update organization settings', () => {
 
   it('Should return error for request body empty', async () => {
     try {
-      const res = await Org.updateOrgSettings({ orgId });
+      const res = await Org.updateOrgSettings({ orgId }, { requestBody: {} });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -164,7 +164,7 @@ describe('PUT: Update member role in organization', () => {
 
   it('Should throw error if request body empty', async () => {
     try {
-      const res = await Org.updateMemberRole({ orgId: 'something-invalid', userId });
+      const res = await Org.updateMemberRole({ orgId: 'something-invalid', userId }, { requestBody: {} });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
