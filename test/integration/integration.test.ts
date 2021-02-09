@@ -26,7 +26,7 @@ describe('GET: List all integrations for given Org ID', async () => {
 describe('POST: Add new integration to org', async () => {
   it('Should throw and error for request body empty', async () => {
     try {
-      const res = await Integration.addNewIntegration({ orgId });
+      const res = await Integration.addNewIntegration({ orgId }, { requestBody: {} });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -52,7 +52,7 @@ describe('PUT: Update existing integration for the org', async () => {
 
   it('Should throw error for request body empty', async () => {
     try {
-      const res = await Integration.updateIntegration({ orgId, integrationId });
+      const res = await Integration.updateIntegration({ orgId, integrationId }, { requestBody: {} });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
@@ -149,7 +149,7 @@ describe('POST: Import a project', () => {
 
   it('Should return error for no request body', async () => {
     try {
-      const res = await Integration.importProject({ orgId, integrationId });
+      const res = await Integration.importProject({ orgId, integrationId }, { requestBody: {} });
       utilFunctions.expectToNotExist(res);
     } catch (error) {
       utilFunctions.expectErr(error);
