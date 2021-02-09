@@ -4,9 +4,9 @@ import { ReqOpts, ReturnData, RequestMethod } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
 
 export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {}): Promise<ReturnData> => {
-  let snykRequestId = null,
-    response,
-    httpCode;
+  let snykRequestId = null;
+  let response = null;
+  let httpCode = null;
 
   try {
     const client = httpClient(opts);
@@ -91,13 +91,13 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
       snykRequestId = getRequestId(response.headers);
 
       let message: string = "Something wen't wrong";
-      if (httpCode == 400) {
+      if (httpCode === 400) {
         message = 'Bad request, please check API documentation';
-      } else if (httpCode == 401) {
+      } else if (httpCode === 401) {
         message = 'Invalid token or unauthorized to make the request';
-      } else if (httpCode == 404) {
-        message = `Request Org ID or Project ID not found!`;
-      } else if (httpCode == 500) {
+      } else if (httpCode === 404) {
+        message = `One of the IDs were not found`;
+      } else if (httpCode === 500) {
         message = 'Internal server error';
       }
 
@@ -112,9 +112,9 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
     }
     return Promise.reject({
       success: false,
-      response: null,
-      error: error,
-      httpCode: 0,
+      response,
+      error,
+      httpCode,
       snykRequestId,
     });
   }

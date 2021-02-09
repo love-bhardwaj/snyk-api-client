@@ -1,10 +1,10 @@
-import { httpErrorData } from '../types/types';
+import { HttpErrorData } from '../types/types';
 
 class HttpError extends Error {
   public httpStatusCode: number;
   public responseBody: any;
 
-  constructor(data: httpErrorData) {
+  constructor(data: HttpErrorData) {
     super(data.message);
     this.httpStatusCode = data.statusCode;
   }

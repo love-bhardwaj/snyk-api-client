@@ -3,9 +3,8 @@ import { ReqOpts } from '../../types/types';
 import { UrlNotSetError } from '../../errors/errors';
 
 export default function getApiUrl(opts: ReqOpts) {
-  let baseUrl, baseApiPath;
-  baseUrl = opts.baseUrl || ClientSettings.getBaseUrl();
-  baseApiPath = opts.baseApiPath || ClientSettings.getBaseApiPath();
+  const baseUrl = opts.baseUrl || ClientSettings.getBaseUrl();
+  const baseApiPath = opts.baseApiPath || ClientSettings.getBaseApiPath();
   const url = `${baseUrl}${baseApiPath}`;
   if (!url) throw new UrlNotSetError();
   return url;

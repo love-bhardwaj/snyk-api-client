@@ -5,6 +5,7 @@
     ],
     "rules": {
         "no-console": false,
-        "no-shadow-variable": false
+        "no-shadowed-variable": false,
+        "max-classes-per-file": false
     }
 }

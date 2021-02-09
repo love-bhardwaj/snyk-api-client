@@ -1,6 +1,6 @@
 export default (queryPrams: any): string => {
   let queryString = '';
-  for (let key in queryPrams) {
+  for (const key in queryPrams) {
     if (queryPrams.hasOwnProperty(key)) {
       if (key === 'repository') queryPrams[key] = encodeURIComponent(queryPrams[key]);
 

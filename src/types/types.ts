@@ -1,7 +1,6 @@
 import { HttpError } from 'errors/errors';
-import integrations from 'lib/api/integrations';
 
-export interface httpErrorData {
+export interface HttpErrorData {
   message: string;
   statusCode: number;
 }
