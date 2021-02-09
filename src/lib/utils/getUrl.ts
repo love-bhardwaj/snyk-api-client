@@ -12,6 +12,7 @@ import {
   ComposerQueryParams,
   TestDepGraphQueryParams,
   GopkgTestQueryParams,
+  MonitorDepGraphQueryParams,
 } from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
@@ -292,5 +293,8 @@ export default {
   },
   testDepGraph: (queryParams?: TestDepGraphQueryParams): string => {
     return !!queryParams ? `test/dep-graph?${getQueryString(queryParams)}` : `test/dep-graph`;
+  },
+  monitorDepGraph: (queryParams?: MonitorDepGraphQueryParams): string => {
+    return !!queryParams ? `monitor/dep-graph?${getQueryString(queryParams)}` : `monitor/dep-graph`;
   },
 };

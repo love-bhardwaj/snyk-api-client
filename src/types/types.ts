@@ -165,6 +165,14 @@ export interface TestDepGraphReqOpts extends ReqOpts {
   queryParams?: TestDepGraphQueryParams;
 }
 
+export interface MonitorDepGraphQueryParams {
+  org?: string;
+}
+
+export interface MonitorDepGraphReqOpts extends ReqOpts {
+  queryParams?: MonitorDepGraphQueryParams;
+}
+
 export interface ClientOpts {
   apiToken?: string;
   baseUrl?: string;
