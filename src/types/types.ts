@@ -173,6 +173,98 @@ export interface MonitorDepGraphReqOpts extends ReqOpts {
   queryParams?: MonitorDepGraphQueryParams;
 }
 
+export interface ListLatestIssuesQueryParams {
+  page?: number;
+  perPage?: number;
+  sortBy?:
+    | 'severity'
+    | 'issueTitle'
+    | 'projectName'
+    | 'isFixed'
+    | 'isPatched'
+    | 'isIgnored'
+    | 'introducedDate'
+    | 'isUpgradable'
+    | 'isPatchable'
+    | 'priorityScore';
+  order?: string;
+  groupBy?: 'issue';
+}
+
+export interface ListLatestIssueReqOpts extends ReqOpts {
+  queryParams?: ListLatestIssuesQueryParams;
+  requestBody: {
+    filters: object;
+  };
+}
+
+export interface ListOfIssueQueryParams extends ListLatestIssuesQueryParams {
+  from: string;
+  to: string;
+}
+
+export interface ListOfIssuesReqOpts extends ReqOpts {
+  queryParams: ListOfIssueQueryParams;
+  requestBody: {
+    filters: object;
+  };
+}
+
+export interface LatestIssueCountQueryParams {
+  groupBy?: string;
+}
+
+export interface LatestIssueCountReqOpts {
+  queryParams?: LatestIssueCountQueryParams;
+  requestBody: {
+    filters: object;
+  };
+}
+
+export interface GetIssueCountQueryParams {
+  from: string;
+  to: string;
+  groupBy?: string;
+}
+
+export interface GetIssueCountReqOpts {
+  queryParams: GetIssueCountQueryParams;
+  requestBody: {
+    filters: object;
+  };
+}
+
+export interface GetLastestProjectCountsReqOtps extends ReqOpts {
+  requestBody: {
+    filters: object;
+  };
+}
+
+export interface ProjectCountsQueryParams {
+  from: string;
+  to: string;
+}
+
+export interface ProjectCountsReqOpts {
+  queryParams: ProjectCountsQueryParams;
+  requestBody: {
+    filters: object;
+  };
+}
+
+export interface GetTestCountsQueryParams {
+  from: string;
+  to: string;
+  groupBy?: string;
+}
+
+export interface GetTestCountsReqOpts {
+  queryParams: GetTestCountsQueryParams;
+  requestBody: {
+    filters: object;
+  };
+}
+
 export interface ClientOpts {
   apiToken?: string;
   baseUrl?: string;

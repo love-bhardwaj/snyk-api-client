@@ -13,6 +13,12 @@ import {
   TestDepGraphQueryParams,
   GopkgTestQueryParams,
   MonitorDepGraphQueryParams,
+  ListLatestIssuesQueryParams,
+  ListOfIssueQueryParams,
+  LatestIssueCountQueryParams,
+  GetIssueCountQueryParams,
+  ProjectCountsQueryParams,
+  GetTestCountsQueryParams,
 } from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
@@ -296,5 +302,28 @@ export default {
   },
   monitorDepGraph: (queryParams?: MonitorDepGraphQueryParams): string => {
     return !!queryParams ? `monitor/dep-graph?${getQueryString(queryParams)}` : `monitor/dep-graph`;
+  },
+  listLatestIssues: (queryParams?: ListLatestIssuesQueryParams): string => {
+    return !!queryParams ? `reporting/issues/latest?${getQueryString(queryParams)}` : `reporting/issues/latest`;
+  },
+  listOfIssues: (queryParams?: ListOfIssueQueryParams): string => {
+    return !!queryParams ? `reporting/issues/?${getQueryString(queryParams)}` : `v1/reporting/issues/`;
+  },
+  getLatestIssueCounts: (queryParams?: LatestIssueCountQueryParams): string => {
+    return !!queryParams
+      ? `reporting/counts/issues/latest?${getQueryString(queryParams)}`
+      : `reporting/counts/issues/latest`;
+  },
+  getIssueCounts: (queryParams?: GetIssueCountQueryParams): string => {
+    return !!queryParams ? `reporting/counts/issues?${getQueryString(queryParams)}` : `reporting/counts/issues`;
+  },
+  getLatestProjectCounts: (): string => {
+    return `reporting/counts/projects/latest`;
+  },
+  getProjectCounts: (queryParams: ProjectCountsQueryParams): string => {
+    return `reporting/counts/projects?${getQueryString(queryParams)}`;
+  },
+  getTestCounts: (queryParams?: GetTestCountsQueryParams): string => {
+    return !!queryParams ? `reporting/counts/tests?${getQueryString(queryParams)}` : `reporting/counts/tests`;
   },
 };

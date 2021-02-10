@@ -10,6 +10,7 @@ import License from './lib/api/license/index';
 import Entitlement from './lib/api/entitlement/index';
 import Test from './lib/api/test/index';
 import Monitor from './lib/api/monitor/index';
+import Report from './lib/api/report/index';
 
 export {
   ClientConfig,
@@ -24,4 +25,5 @@ export {
   Entitlement,
   Test,
   Monitor,
+  Report,
 };
