@@ -9,5 +9,19 @@ import Dependency from './lib/api/dependency/index';
 import License from './lib/api/license/index';
 import Entitlement from './lib/api/entitlement/index';
 import Test from './lib/api/test/index';
+import Monitor from './lib/api/monitor/index';
 
-export { ClientConfig, General, User, Project, Group, Org, Integration, Dependency, License, Entitlement, Test };
+export {
+  ClientConfig,
+  General,
+  User,
+  Project,
+  Group,
+  Org,
+  Integration,
+  Dependency,
+  License,
+  Entitlement,
+  Test,
+  Monitor,
+};

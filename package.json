@@ -21,7 +21,8 @@
     "test-dependency": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/dependency/*.test.ts'",
     "test-license": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/license/*.test.ts'",
     "test-entitlement": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/entitlement/*.test.ts'",
-    "test-testapi": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/test-api/*.test.ts'"
+    "test-testapi": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/test-api/*.test.ts'",
+    "test-monitor": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/monitor/*.test.ts'"
   },
   "keywords": [],
   "author": {
