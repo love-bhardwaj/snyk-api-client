@@ -1,5 +1,4 @@
 import httpClient from '../utils/httpClient';
-import getApiToken from '../utils/getApiToken';
 import { ReqOpts, ReturnData, RequestMethod } from '../../types/types';
 import getRequestId from '../utils/getRequestId';
 
@@ -96,9 +95,9 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
       } else if (httpCode === 401) {
         message = 'Invalid token or unauthorized to make the request';
       } else if (httpCode === 404) {
-        message = `One of the IDs were not found`;
+        message = `One of the IDs was not found`;
       } else if (httpCode === 500) {
-        message = 'Internal server error';
+        message = 'Internal server error, please check the error ref';
       }
 
       const err = new Error(message);
