@@ -26,12 +26,6 @@
     "test-report": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/report/*.test.ts'",
     "test-log": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/log/*.test.ts'"
   },
-  "keywords": [],
-  "author": {
-    "name": "Love Bhardwaj",
-    "email": "love.bhardwaj@snyk.io"
-  },
-  "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
@@ -46,5 +40,27 @@
   },
   "dependencies": {
     "got": "^11.8.1"
+  },
+  "keywords": [
+    "snyk",
+    "api",
+    "helper"
+  ],
+  "author": {
+    "name": "Love Bhardwaj",
+    "email": "love.bhardwaj@snyk.io"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/lovebhardwajsnyk/snyk-api-helper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lovebhardwajsnyk/snyk-api-helper"
+  },
+  "bugs": {
+    "url": "https://github.com/lovebhardwajsnyk/snyk-api-helper/issues",
+    "email": "love.bhardwaj@snyk.io"
+  },
+  "engines": {
+    "node": ">=7.6.0"
   }
 }
