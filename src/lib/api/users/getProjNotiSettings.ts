@@ -1,9 +1,6 @@
 import config from '../../utils/getUrl';
-import httpClient from '../../utils/httpClient';
 import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
-import getApiToken from '../../utils/getApiToken';
-import getRequestId from '../../utils/getRequestId';
 
 /**
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-project-notification-settings/get-project-notification-settings

@@ -7,7 +7,6 @@ export default async (
   opts: ReqOpts = {},
 ): Promise<ReturnData> => {
   const { orgId, integrationId, jobId } = data;
-
   const endpoint = getUrl.getImportJobDetails(orgId, integrationId, jobId);
 
   try {

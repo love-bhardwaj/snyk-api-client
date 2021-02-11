@@ -8,7 +8,6 @@ export default async (data: { orgId: string; groupId: string }, opts: ReqOptsWit
   if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
   const { orgId, groupId } = data;
-
   const endpoint = getUrl.addMemberToOrgInGroup(groupId, orgId);
 
   try {

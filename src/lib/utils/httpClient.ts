@@ -4,7 +4,6 @@ import getApiToken from './getApiToken';
 import getApiUrl from './getApiUrl';
 
 export default function getHttpClient(opts: ReqOpts) {
-  // TODO: Should move get API token function call here
   try {
     const apiUrl = getApiUrl(opts);
     const apiToken = getApiToken(opts);

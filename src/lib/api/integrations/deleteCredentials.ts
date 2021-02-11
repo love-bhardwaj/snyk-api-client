@@ -4,7 +4,6 @@ import { RequestMethod, ReqOpts, ReturnData } from '../../../types/types';
 
 export default async (data: { orgId: string; integrationId: string }, opts: ReqOpts = {}): Promise<ReturnData> => {
   const { orgId, integrationId } = data;
-
   const endpoint = getUrl.deleteCredentials(orgId, integrationId);
 
   try {

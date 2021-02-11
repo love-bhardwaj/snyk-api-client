@@ -151,6 +151,7 @@ export interface ComposerQueryParams {
 
 export interface ComposerTestReqOpts extends ReqOpts {
   queryParams?: ComposerQueryParams;
+  requestBody: object;
 }
 
 export interface ComposerFileTestReqOpts extends ComposerTestReqOpts {
@@ -163,6 +164,7 @@ export interface TestDepGraphQueryParams {
 
 export interface TestDepGraphReqOpts extends ReqOpts {
   queryParams?: TestDepGraphQueryParams;
+  requestBody: object;
 }
 
 export interface MonitorDepGraphQueryParams {
@@ -265,14 +267,14 @@ export interface GetTestCountsReqOpts {
   };
 }
 
-export interface LogQueryParams{
+export interface LogQueryParams {
   from?: string;
   to?: string;
   page?: number;
-  sortOrder?: 'ASC'|'DSC';
+  sortOrder?: 'ASC' | 'DSC';
 }
 
-export interface LogReqOpts{
+export interface LogReqOpts {
   queryParams?: LogQueryParams;
 }
 

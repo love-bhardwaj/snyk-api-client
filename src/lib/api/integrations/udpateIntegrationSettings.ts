@@ -7,7 +7,6 @@ import { RequestBodyEmpty } from '../../../errors/errors';
 export default async (data: { orgId: string; integrationId: string }, opts: ReqOptsWithBody): Promise<ReturnData> => {
   if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
   const { orgId, integrationId } = data;
-
   const endpoint = getUrl.updateIntegrationSettings(orgId, integrationId);
 
   try {

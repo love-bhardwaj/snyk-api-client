@@ -4,7 +4,6 @@ import { RequestMethod, ReqOpts, ReturnData } from '../../../types/types';
 
 export default async (data: { orgId: string }, opts: ReqOpts = {}): Promise<ReturnData> => {
   const { orgId } = data;
-
   const endpoint = getUrl.listIntegrations(orgId);
 
   try {

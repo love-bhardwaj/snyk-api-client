@@ -5,6 +5,7 @@ import { RequestBodyEmpty } from '../../../errors/errors';
 import { ComposerFileTestReqOpts, RequestMethod, ReturnData } from '../../../types/types';
 
 export default async (opts: ComposerFileTestReqOpts): Promise<ReturnData> => {
+  if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
   const endpoint = getUrl.testComposerPublicPackage(opts.queryParams);
 
   try {

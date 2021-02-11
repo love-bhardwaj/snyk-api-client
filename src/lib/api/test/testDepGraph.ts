@@ -4,8 +4,8 @@ import isObjectEmpty from '../../utils/isObjectEmpty';
 import { RequestBodyEmpty } from '../../../errors/errors';
 import { TestDepGraphReqOpts, RequestMethod, ReturnData } from '../../../types/types';
 
-export default async (opts: TestDepGraphReqOpts = {}): Promise<ReturnData> => {
-  if (!opts.requestBody || isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
+export default async (opts: TestDepGraphReqOpts): Promise<ReturnData> => {
+  if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
   const endpoint = getUrl.testDepGraph(opts.queryParams);
 

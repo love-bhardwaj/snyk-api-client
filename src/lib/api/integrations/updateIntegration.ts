@@ -8,7 +8,6 @@ export default async (data: { orgId: string; integrationId: string }, opts: ReqO
   if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
   const { orgId, integrationId } = data;
-
   const endpoint = getUrl.updateIntegration(orgId, integrationId);
 
   try {
