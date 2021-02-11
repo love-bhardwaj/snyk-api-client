@@ -1,7 +1,7 @@
-import getEntitlementValue from "./getEntitlementValue";
-import listAllEntitlements from "./listAllEntitlements";
+import getEntitlementValue from './getEntitlementValue';
+import listAllEntitlements from './listAllEntitlements';
 
 export default {
-    listAllEntitlements,
-    getEntitlementValue
+  listAllEntitlements,
+  getEntitlementValue,
 };
