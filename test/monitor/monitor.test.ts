@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { Monitor } from '../../src/index';
 import utilFunctions from '../testUtils';
 

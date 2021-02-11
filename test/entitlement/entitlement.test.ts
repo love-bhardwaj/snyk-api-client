@@ -1,5 +1,4 @@
 import { Entitlement } from '../../src/index';
-import { expect } from 'chai';
 import utilFunctions from '../testUtils';
 
 let orgId: string;

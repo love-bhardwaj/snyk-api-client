@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { License } from '../../src/index';
 import utilFunctions from '../testUtils';
 

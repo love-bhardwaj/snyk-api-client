@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { Integration } from '../../src/index';
 import utilFunctions from '../testUtils';
 
