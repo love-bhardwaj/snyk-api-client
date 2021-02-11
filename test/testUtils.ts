@@ -65,4 +65,7 @@ export default {
     const projectId = projects[0].id;
     return Promise.resolve(projectId);
   },
+  getGroupId: (): string => {
+    return process.env.SNYK_GROUP_ID as string;
+  },
 };

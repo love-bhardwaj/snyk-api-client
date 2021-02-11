@@ -19,6 +19,7 @@ import {
   GetIssueCountQueryParams,
   ProjectCountsQueryParams,
   GetTestCountsQueryParams,
+  LogQueryParams,
 } from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
@@ -325,5 +326,11 @@ export default {
   },
   getTestCounts: (queryParams?: GetTestCountsQueryParams): string => {
     return !!queryParams ? `reporting/counts/tests?${getQueryString(queryParams)}` : `reporting/counts/tests`;
+  },
+  getGroupLevelLogs: (groupId: string, queryParams?: LogQueryParams): string => {
+    return !!queryParams ? `group/${groupId}/audit?${getQueryString(queryParams)}` : `group/${groupId}/audit`;
+  },
+  getOrgLevelLogs: (orgId: string, queryParams?: LogQueryParams): string => {
+    return !!queryParams ? `org/${orgId}/audit?${getQueryString(queryParams)}` : `org/${orgId}/audit`;
   },
 };

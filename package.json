@@ -23,7 +23,8 @@
     "test-entitlement": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/entitlement/*.test.ts'",
     "test-testapi": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/test-api/*.test.ts'",
     "test-monitor": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/monitor/*.test.ts'",
-    "test-report": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/report/*.test.ts'"
+    "test-report": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/report/*.test.ts'",
+    "test-log": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/log/*.test.ts'"
   },
   "keywords": [],
   "author": {

@@ -2,7 +2,7 @@ import { Group } from '../../src/index';
 import { expect } from 'chai';
 import utilFunctions from '../testUtils';
 
-const groupId: string = '953108f7-d455-48cf-81af-966e0374d4b3';
+const groupId: string = utilFunctions.getGroupId();
 
 describe('GET: View group settings', () => {
   // TODO: API error

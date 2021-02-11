@@ -265,6 +265,17 @@ export interface GetTestCountsReqOpts {
   };
 }
 
+export interface LogQueryParams{
+  from?: string;
+  to?: string;
+  page?: number;
+  sortOrder?: 'ASC'|'DSC';
+}
+
+export interface LogReqOpts{
+  queryParams?: LogQueryParams;
+}
+
 export interface ClientOpts {
   apiToken?: string;
   baseUrl?: string;
