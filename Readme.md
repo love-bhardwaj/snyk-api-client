@@ -71,6 +71,7 @@ Promise.resolve({
 
 ### Example Usage:
 
+Get Request:
 ```ts
     try {
       const res = await Entitlement.listAllEntitlements({ orgId: 'your-snyk-org-id' });
@@ -78,7 +79,52 @@ Promise.resolve({
       console.error(error);
     }
 ```
+Post Request:
+```ts
+const  requestBody = { email:  'example@example.com' };
 
+	try {
+      const res = await Org.inviteUserToOrg({ orgId: 'snyk-org-id' }, { requestBody });
+    } catch (error) {
+      console.error(error);
+    }
+```
+Sucessful Response:
+
+```ts
+{
+  success: true,
+  response: {
+    id: '0b38513b-7dcd-4054-bc62-df93eab3',
+    name: 'example:package.json',
+    branch: 'master'
+  },
+  error: null,
+  httpCode: 200,
+  snykRequestId: 'df93eab3-35bf-406e-91fe-fb4ebecb145b'
+}
+```
+
+Error Reponse:
+
+```ts
+{
+  success: false,
+  response: {
+    code: 401,
+    message: 'Invalid auth token provided',
+    error: 'Invalid auth token provided'
+  },
+  error: Error: Invalid token or unauthorized to make the request
+      at /snyk-api-helper/dist/lib/utils/processRequest.js:163:31
+      at step (/snyk-api-helper/dist/lib/utils/processRequest.js:33:23)
+      at Object.throw (/snyk-api-helper/dist/lib/utils/processRequest.js:14:53)
+      at rejected (/snyk-api-helper/dist/lib/utils/processRequest.js:6:65)
+      at processTicksAndRejections (internal/process/task_queues.js:93:5),
+  httpCode: 401,
+  snykRequestId: '165ed584-0b7c-480a-8c61-07e061e1fbe2'
+}
+```
 ## Issues and Bugs
 
 Please open a issue if you encounter any bugs or errors
