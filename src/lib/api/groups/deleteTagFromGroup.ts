@@ -5,6 +5,8 @@ import { ReqOptsWithBody, RequestMethod, ReturnData } from '../../../types/types
 import { RequestBodyEmpty } from '../../../errors/errors';
 
 /**
+ * DELETE: Remove a group tag with key value
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/groups/delete-tag-from-group/delete-tag-from-group
  * @param data { groupID } Snyk group ID
  * @param opts { requestBody } The tag key and value

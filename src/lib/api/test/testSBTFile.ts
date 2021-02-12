@@ -4,6 +4,12 @@ import isObjectEmpty from '../../utils/isObjectEmpty';
 import { RequestBodyEmpty } from '../../../errors/errors';
 import { ReturnData, SBTFileTestReqOpts, RequestMethod } from '../../../types/types';
 
+/**
+ * POST: Request to test the content of SBT file
+ *
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/test/sbt/test-sbt-file
+ * @param opts { queryParams } query params can be passed, check the API docs for acceptable params
+ */
 export default async (opts: SBTFileTestReqOpts): Promise<ReturnData> => {
   if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 

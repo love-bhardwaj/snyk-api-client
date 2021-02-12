@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { RequestMethod, ReturnData, ListDepsReqOpts } from '../../../types/types';
 
 /**
+ * GET: List of all the dependencies for an Snyk org
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/dependencies/dependencies-by-organization/list-all-dependencies
  * @param data { orgId }: Snyk Org ID for org which you need get the dependencies
  * @param opts Options to override configs such as API token(Optional)

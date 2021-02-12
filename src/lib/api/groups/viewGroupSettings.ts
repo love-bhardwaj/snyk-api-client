@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: View the group settings
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/groups/group-settings/view-group-settings
  * @param data { groupdId } The Snyk group ID
  */

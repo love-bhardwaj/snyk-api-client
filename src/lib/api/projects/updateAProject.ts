@@ -5,9 +5,10 @@ import isObjectEmpty from '../../utils/isObjectEmpty';
 import { RequestBodyEmpty } from '../../../errors/errors';
 
 /**
+ * PUT: Update a project
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/individual-project/update-a-project
- * @param orgId Organization ID under which project exists
- * @param projectId Project ID
+ * @param data { orgId, projectId } Snyk org ID and project ID
  * @param opts Pass API token in the option to override existing(Optional)
  */
 export default async (data: { orgId: string; projectId: string }, opts: ReqOptsWithBody): Promise<ReturnData> => {

@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { ReturnData, ReqOpts, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: Entitlement value for a Snyk Org using the entitlement key
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/entitlements/a-specific-entitlement-by-organization/get-an-organization's-entitlement-value
  * @param data { orgId, entitlementKey }: Snyk Org ID for org which you need get the entitlement value and the entitlement key
  * @param opts Options to override configs such as API token(Optional)

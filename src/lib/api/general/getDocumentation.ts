@@ -2,6 +2,8 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: Documentation for the Snyk API
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/general/the-api-details/general-api-documentation
  * @param opts Options to override configs such as API token(Optional)
  */

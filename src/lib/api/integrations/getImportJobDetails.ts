@@ -2,6 +2,10 @@ import getUrl from '../../utils/getUrl';
 import processRequest from '../../utils/processRequest';
 import { RequestMethod, ReqOpts, ReturnData } from '../../../types/types';
 
+/**
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/integrations/import-job-details/get-import-job-details
+ * data: { orgId, integrationId } Snyk org ID and integration ID
+ */
 export default async (
   data: { orgId: string; integrationId: string; jobId: string },
   opts: ReqOpts = {},

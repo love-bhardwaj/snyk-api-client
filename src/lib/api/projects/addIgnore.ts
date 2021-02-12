@@ -4,6 +4,13 @@ import isObjectEmpty from '../../utils/isObjectEmpty';
 import { RequestBodyEmpty } from '../../../errors/errors';
 import { ReturnData, RequestMethod, ReqOptsWithBody } from '../../../types/types';
 
+/**
+ * POST: Add an ignore for project
+ *
+ * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/project-ignores-by-issue/add-ignore
+ * @param data { orgId, projectId, issueId } Snyk org ID, project ID and the issue ID for ignore
+ * @param opts { requestBody } Request body should have the ignore information
+ */
 export default async (
   data: {
     orgId: string;

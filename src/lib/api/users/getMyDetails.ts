@@ -4,6 +4,8 @@ import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
 
 /**
+ * GET: Request to fetch the user details
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/my-user-details/get-my-details
  * @param opts Options to override configs such as API token(Optional)
  */
