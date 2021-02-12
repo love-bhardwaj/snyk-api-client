@@ -3,9 +3,10 @@ import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
 
 /**
+ * POST: Activate a project
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/activate-an-individual-project
- * @param orgId Snyk organization ID under which the project exists
- * @param projectId Snyk project ID which is to be activated
+ * @param data { orgId, projectId } The Snyk Org ID and Project ID
  * @param opts options to override configs such as API token(optional)
  */
 export default async (

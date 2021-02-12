@@ -5,6 +5,8 @@ import { RequestBodyEmpty } from '../../../errors/errors';
 import { ReqOptsWithBody, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * POST: Add member to an Snyk org under a Snyk group
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/groups/members-in-an-organization-of-a-group/add-a-member-to-an-organization-within-a-group
  * @param data { orgId, groupId } Snyk Org ID and Group ID required to add member
  * @param opts { requestBody } Required request body check the API documents

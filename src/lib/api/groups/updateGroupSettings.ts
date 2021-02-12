@@ -5,6 +5,8 @@ import { ReqOptsWithBody, ReturnData, RequestMethod } from '../../../types/types
 import { RequestBodyEmpty } from '../../../errors/errors';
 
 /**
+ * PUT: Update group settings
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/groups/group-settings/update-group-settings
  * @param data { groupId } The Snyk group ID
  * @param opts { requestBody } The settings you want to udpated

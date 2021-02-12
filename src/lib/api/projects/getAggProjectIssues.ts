@@ -3,9 +3,10 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * POST: Get all aggregate issue for project, it accepts filters
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/aggregated-project-issues/list-all-aggregated-issues
- * @param orgId Snyk organization ID
- * @param projectId Snyk project ID
+ * @param data { orgId, projectId } Snyk org ID and project ID
  * @param opts options to pass data such as request body and API token
  */
 export default async (

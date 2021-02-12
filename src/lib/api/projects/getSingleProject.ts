@@ -3,9 +3,10 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: Sinlge Snyk project information
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/individual-project/retrieve-a-single-project
- * @param orgId Org ID for the project
- * @param projectId Project ID
+ * @param data { orgId, projectId } Snyk org ID and project ID
  * @param opts Options to override configs such as API token(optional)
  */
 export default async (

@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, RequestMethod, ReturnData } from '../../../types/types';
 
 /**
+ * GET: List all the tags in a group
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/groups/list-all-tags-in-a-group
  * @param data { groupId } The Snyk group ID
  */

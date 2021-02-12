@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: List all the project for an org
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/all-projects/list-all-projects
  * @param orgId Org ID for which you want to get all projects
  * @param opts Options to override configs such as API token(Optional)

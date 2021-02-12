@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: Request to fetch Snyk orgs notification settings
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-organization-notification-settings/get-org-notification-settings
  * @param orgId Organization ID for org which you want the notification settings for
  * @param opts opts Options to override configs such as API token(Optional)

@@ -4,7 +4,7 @@ import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-details/get-user-details
- * @param userId Snyk user ID for which you want to get the details
+ * @param data { userId } Snyk user ID for which you want to get the details
  * @param opts Options to override configs such as API token(Optional)
  */
 export default async function getUserDetails(data: { userId: string }, opts: ReqOpts = {}): Promise<ReturnData> {

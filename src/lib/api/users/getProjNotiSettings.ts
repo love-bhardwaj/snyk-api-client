@@ -3,9 +3,10 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * GET: Request to fetch a project notification settings
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/users/user-project-notification-settings/get-project-notification-settings
- * @param orgId Snyk organization ID under which the project exists
- * @param projectId Snyk project ID
+ * @param data { orgId, projectId } orgId Snyk organization ID under which the project exists, Snyk project ID
  * @param opts Options to override configs such as API token(Optional)
  */
 export default async function getProjectNotiSettings(

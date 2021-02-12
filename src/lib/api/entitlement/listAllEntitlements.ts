@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { RequestMethod, ReqOpts, ReturnData } from '../../../types/types';
 
 /**
+ * GET: List all the entitilements of an Snyk org
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/entitlements/entitlements-by-organization/list-all-entitlements
  * @param data { orgId } Snyk org ID for which you need to list the entitlements for
  */

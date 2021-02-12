@@ -3,6 +3,8 @@ import processRequest from '../../utils/processRequest';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
+ * POST: Deactivate a Snyk project
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/deactivate-an-individual-project/deactivate
  * @param orgId Snyk organization ID under which the project exists
  * @param projectId Snyk project ID which is to be activated
