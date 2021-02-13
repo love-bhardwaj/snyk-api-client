@@ -45,9 +45,11 @@ const requestBody = {
   },
 };
 
-describe('POST: test monitor dep graph endpoint', () => {
-  it('Should monitor the dep graph', async () => {
-    const res = await Monitor.monitorDepGraph({ requestBody });
-    utilFunctions.expect200(res);
+describe('Monitor API test', () => {
+  describe('POST: test monitor dep graph endpoint', () => {
+    it('Should monitor the dep graph', async () => {
+      const res = await Monitor.monitorDepGraph({ requestBody });
+      utilFunctions.expect200(res);
+    });
   });
 });
