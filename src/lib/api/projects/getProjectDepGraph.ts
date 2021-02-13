@@ -4,7 +4,7 @@ import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
  * GET: The Snyk project Dependency graph
- * 
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/project-dependency-graph/get-project-dependency-graph
  * @param data { orgId, projectId } Snyk org ID and the Snyk project ID
  */

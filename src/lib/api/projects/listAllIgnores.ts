@@ -4,7 +4,7 @@ import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 
 /**
  * GET: List all the ignores for a project
- * 
+ *
  * Docs for API usage: https://snyk.docs.apiary.io/#reference/projects/project-ignores/list-all-ignores
  * @param data { orgId, projectId } The Snyk org ID and project ID
  */
