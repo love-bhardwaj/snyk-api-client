@@ -1,20 +1,22 @@
 # API helper for [Snyk API](https://snyk.docs.apiary.io/#reference/users/user-details/get-user-details)
+
 This is a simple set of library functions that can be used to consume the Snyk API. You don't have to worry about calling the endpoint yourself and thinking if it's a `GET` request, `PUT` request, `POST` request, etc. That is already configured for you behind the scenes.
 
-__Note*__: Package is still in development and is not stable
-
+**Note\***: Package is still in development and is not stable
 
 ## Config
 
 The client needs to supplied the API token to work. This is required, otherwise a error is thrown. There are two ways to do this:
+
 - You can supply the API token by exporting environment variable `SNYK_API_TOKEN`
 - You can import the ClientConfig and set the API token
 
 ```ts
-import { ClientConfig } from  "snyk-api-client";
+import { ClientConfig } from 'snyk-api-client';
 
-ClientConfig.set({ apiToken:  process.env.TOKEN_SNYK_API });
+ClientConfig.set({ apiToken: process.env.TOKEN_SNYK_API });
 ```
+
 The following settings the can be configure through the ClientConfig are the following:
 
 - apiToken: set to environment variable SNYK_API_TOKEN by default
@@ -22,11 +24,12 @@ The following settings the can be configure through the ClientConfig are the fol
 - baseApiPath: set to /api/v1 by default
 
 Example:
+
 ```ts
-ClientConfig.set({ 
-		baseUrl: 'https://snyk.io.something',
-		baseApiPath: '/api/v2'
-	});
+ClientConfig.set({
+  baseUrl: 'https://snyk.io.something',
+  baseApiPath: '/api/v2',
+});
 ```
 
 ## API
@@ -35,9 +38,9 @@ Once you have the API token setup you can use the helper functions right away. Y
 
 ```ts
 // Import the General API object
-import { General, User } from  '../../src/index';
+import { General, User } from '../../src/index';
 // Call the general docs API
-const res = await  General.getDocs();
+const res = await General.getDocs();
 const res = await User.getMyDetails();
 ```
 
@@ -51,16 +54,16 @@ Each function will accepts a optional options object which can used to overwrite
 
 ## Request and Response
 
-Every API call returns a `Promise`  and whenever the promise is resolved or rejected it return the following object:
+Every API call returns a `Promise` and whenever the promise is resolved or rejected it return the following object:
 
 ```ts
 Promise.resolve({
-          success: boolean,
-          response: object,
-          error: Error | null,
-          httpCode: number | null,
-          snykRequestId: string | null
-        });
+  success: boolean,
+  response: object,
+  error: Error | null,
+  httpCode: number | null,
+  snykRequestId: string | null,
+});
 ```
 
 - `sucess`: A boolean value which indicated if the request was a sucess or not
@@ -72,23 +75,27 @@ Promise.resolve({
 ### Example Usage:
 
 Get Request:
-```ts
-    try {
-      const res = await Entitlement.listAllEntitlements({ orgId: 'your-snyk-org-id' });
-    } catch (error) {
-      console.error(error);
-    }
-```
-Post Request:
-```ts
-const  requestBody = { email:  'example@example.com' };
 
-	try {
-      const res = await Org.inviteUserToOrg({ orgId: 'snyk-org-id' }, { requestBody });
-    } catch (error) {
-      console.error(error);
-    }
+```ts
+try {
+  const res = await Entitlement.listAllEntitlements({ orgId: 'your-snyk-org-id' });
+} catch (error) {
+  console.error(error);
+}
 ```
+
+Post Request:
+
+```ts
+const requestBody = { email: 'example@example.com' };
+
+try {
+  const res = await Org.inviteUserToOrg({ orgId: 'snyk-org-id' }, { requestBody });
+} catch (error) {
+  console.error(error);
+}
+```
+
 Sucessful Response:
 
 ```ts
@@ -129,7 +136,6 @@ Error Reponse:
 ## Examples
 
 Some example to use the pacakge can be found here: [snyk-api-client examples](https://github.com/lovebhardwajsnyk/snyk-api-client-examples)
-
 
 ## Issues and Bugs
 
