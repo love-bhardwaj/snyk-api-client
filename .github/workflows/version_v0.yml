@@ -31,3 +31,5 @@ jobs:
         run: npm test
       - name: Snyk
         uses: snyk/actions@0.3.0
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
