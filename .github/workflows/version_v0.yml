@@ -22,12 +22,8 @@ jobs:
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14.x'
-
-      - name: Install and build
-        run: npm ci, npm run build
-
-      - name: Test
-        run: npm test
+      - run: npm ci, npm run build
+      - run: npm test
 
       - name: Snyk
       - uses: snyk/actions@0.3.0
