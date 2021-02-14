@@ -22,11 +22,6 @@ jobs:
           node-version: '14.x'
       - name: Install dependencies
         run: npm ci
-  build:
-    needs: ready
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Build
         run: npm run build
       - name: Test
@@ -34,11 +29,5 @@ jobs:
           SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
           SNYK_GROUP_ID: ${{ secrets.SNYK_GROUP_ID }}
         run: npm test
-
-  security:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
       - name: Snyk
         uses: snyk/actions@0.3.0
