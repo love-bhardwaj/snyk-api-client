@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
   build:
-    needs: install
+    needs: ready
     runs-on: ubuntu-latest
 
     steps:
