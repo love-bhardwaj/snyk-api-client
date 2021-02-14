@@ -125,6 +125,12 @@ Error Reponse:
   snykRequestId: '165ed584-0b7c-480a-8c61-07e061e1fbe2'
 }
 ```
+
+## Examples
+
+Some example to use the pacakge can be found here: [snyk-api-client examples](https://github.com/lovebhardwajsnyk/snyk-api-client-examples)
+
+
 ## Issues and Bugs
 
 Please open a issue if you encounter any bugs or errors
