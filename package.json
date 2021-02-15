@@ -1,6 +1,6 @@
 {
   "name": "snyk-api-client",
-  "version": "0.0.1-0",
+  "version": "0.0.1-1",
   "description": "Helper functions to consume Snyk API",
   "main": "dist/index.js",
   "files": [
@@ -26,8 +26,8 @@
     "test-report": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/report/*.test.ts'",
     "test-log": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/log/*.test.ts'",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run lint && npm run format",
-    "preversion": "npm run lint && npm run format && npm run test && snyk test",
+    "prepublishOnly": "npm run build && npm run lint && npm run format",
+    "preversion": "npm run build && npm run lint && npm run format && npm run test && snyk test",
     "version": "git add -A",
     "postversion": "git push && git push --tags"
   },

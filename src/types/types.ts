@@ -1,5 +1,3 @@
-import { HttpError } from 'errors/errors';
-
 export interface HttpErrorData {
   message: string;
   statusCode: number;
@@ -8,7 +6,7 @@ export interface HttpErrorData {
 export interface ReturnData {
   success: boolean;
   response: any;
-  error: HttpError | Error | null;
+  error: Error | null;
   httpCode: number;
   snykRequestId: string | null;
 }
