@@ -23,6 +23,14 @@ export interface ReqOptsWithBody extends ReqOpts {
   requestBody: any;
 }
 
+export interface ListMembersQueryParams {
+  includeGroupAdmins?: boolean;
+}
+
+export interface ListMembersReqOpts extends ReqOpts {
+  queryParams?: ListMembersQueryParams;
+}
+
 export interface ListDepsQueryParams {
   sortBy?: string;
   order?: string;

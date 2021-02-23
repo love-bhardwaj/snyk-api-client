@@ -20,6 +20,7 @@ import {
   ProjectCountsQueryParams,
   GetTestCountsQueryParams,
   LogQueryParams,
+  ListMembersQueryParams,
 } from '../../types/types';
 import getQueryString from '../utils/getQueryString';
 
@@ -156,7 +157,7 @@ export default {
   inviteUserToOrg: (orgId: string): string => {
     return `org/${orgId}/invite`;
   },
-  listOrgMembers: (orgId: string, queryParams: { includeGroupAdmins?: boolean }): string => {
+  listOrgMembers: (orgId: string, queryParams?: ListMembersQueryParams): string => {
     return queryParams!! ? `org/${orgId}/members?${getQueryString(queryParams)}` : `org/${orgId}/members`;
   },
   viewOrgSettings: (orgId: string): string => {
@@ -203,7 +204,7 @@ export default {
     return `org/${orgId}/integrations/${integrationId}/import`;
   },
   getImportJobDetails: (orgId: string, integrationId: string, jobId: string): string => {
-    return `${orgId}/integrations/${integrationId}/import/${jobId}`;
+    return `org/${orgId}/integrations/${integrationId}/import/${jobId}`;
   },
   getIntegrationSettings: (orgId: string, integrationId: string): string => {
     return `org/${orgId}/integrations/${integrationId}/settings`;

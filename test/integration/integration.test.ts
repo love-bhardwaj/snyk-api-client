@@ -160,7 +160,7 @@ describe('Integration API test', () => {
   describe('GET: Import job details', () => {
     it('Should return 404 for org ID not found', async () => {
       try {
-        const res = await Integration.getImportJobDetails({ orgId: 'soemthing-invalid', jobId: 'test', integrationId });
+        const res = await Integration.getImportJobDetails({ orgId: 'something-invalid', jobId: 'test', integrationId });
         utilFunctions.expectToNotExist(res);
       } catch (error) {
         utilFunctions.expect404(error);
