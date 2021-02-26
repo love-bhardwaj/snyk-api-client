@@ -15,14 +15,14 @@ export default async (
   data: {
     orgId: string;
     projectId: string;
-    ignoreId: string;
+    issueId: string;
   },
   opts: ReqOptsWithBody,
 ): Promise<ReturnData> => {
   if (isObjectEmpty(opts.requestBody)) throw new RequestBodyEmpty();
 
-  const { orgId, projectId, ignoreId } = data;
-  const endpoint = getUrl.replaceIgnores(orgId, projectId, ignoreId);
+  const { orgId, projectId, issueId } = data;
+  const endpoint = getUrl.replaceIgnores(orgId, projectId, issueId);
 
   try {
     return await processRequest(endpoint, RequestMethod.PUT, opts);
