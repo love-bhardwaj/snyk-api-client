@@ -38,7 +38,7 @@ Once you have the API token setup you can use the helper functions right away. Y
 
 ```ts
 // Import the General API object
-import { General, User } from '../../src/index';
+import { General, User } from 'snyk-api-client';
 // Call the general docs API
 const res = await General.getDocs();
 const res = await User.getMyDetails();
