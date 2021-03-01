@@ -83,8 +83,8 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
     }
   } catch (error) {
     // TODO: Can distinguish between API and request error
-    let response = error.response || null;
-    let httpCode = response.statusCode || null;
+    const response = error.response || null;
+    const httpCode = response.statusCode || null;
     let snykRequestId = null;
     let message = 'Somethin went wrong!';
 
