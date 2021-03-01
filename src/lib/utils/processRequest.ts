@@ -83,23 +83,25 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
     }
   } catch (error) {
     // TODO: Can distinguish between API and request error
-    if (error.response) {
-      const response = error.response;
-      const httpCode = response.statusCode || 500;
-      const responseBody = response.body || null;
+    let response = error.response || null;
+    let httpCode = response.statusCode || null;
+    let snykRequestId = null;
+    let message = 'Somethin went wrong!';
+
+    if (httpCode === 400) {
+      message = 'Bad request, please check API documentation';
+    } else if (httpCode === 401) {
+      message = 'Invalid token or unauthorized to make the request';
+    } else if (httpCode === 404) {
+      message = `One of the IDs was not found`;
+    } else if (httpCode === 500) {
+      message = 'Internal server error, please check the error ref';
+    }
+
+    if (response) {
       snykRequestId = getRequestId(response.headers);
 
-      let message: string = "Something wen't wrong";
-      if (httpCode === 400) {
-        message = 'Bad request, please check API documentation';
-      } else if (httpCode === 401) {
-        message = 'Invalid token or unauthorized to make the request';
-      } else if (httpCode === 404) {
-        message = `One of the IDs was not found`;
-      } else if (httpCode === 500) {
-        message = 'Internal server error, please check the error ref';
-      }
-
+      const responseBody = response.body;
       const err = new Error(message);
       return Promise.reject({
         success: false,
@@ -109,6 +111,7 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
         snykRequestId,
       });
     }
+
     return Promise.reject({
       success: false,
       response,

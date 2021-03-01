@@ -2,6 +2,10 @@ import utilFunctions from '../testUtils';
 import { Report } from '../../src/index';
 
 let orgId: string;
+const date = new Date();
+date.setMonth(date.getMonth() - 1);
+const fromDate = date.toISOString().split('T')[0];
+const toDate = new Date().toISOString().split('T')[0];
 
 describe('Report API test', () => {
   describe('POST: Get list of latest issues', () => {
@@ -24,7 +28,7 @@ describe('Report API test', () => {
     it('Should return a list of issues', async () => {
       const res = await Report.getListOfIssues({
         requestBody: { filters: { orgs: [orgId] } },
-        queryParams: { to: '2021-01-01', from: '2021-02-01' },
+        queryParams: { to: toDate, from: fromDate },
       });
       utilFunctions.expect200(res);
     });
@@ -41,7 +45,7 @@ describe('Report API test', () => {
     it('Should return the issue counts', async () => {
       const res = await Report.getIssueCounts({
         requestBody: { filters: { orgs: [orgId] } },
-        queryParams: { from: '2021-01-01', to: '2021-02-1' },
+        queryParams: { from: fromDate, to: toDate },
       });
 
       utilFunctions.expect200(res);
@@ -59,7 +63,7 @@ describe('Report API test', () => {
     it('Should return project counts over time', async () => {
       const res = await Report.getProjectCountsOverTime({
         requestBody: { filters: { orgs: [orgId] } },
-        queryParams: { from: '2020-01-01', to: '2020-02-01' },
+        queryParams: { from: fromDate, to: toDate },
       });
       utilFunctions.expect200(res);
     });
@@ -69,7 +73,7 @@ describe('Report API test', () => {
     it('Should return test counts over time', async () => {
       const res = await Report.getTestCounts({
         requestBody: { filters: { orgs: [orgId] } },
-        queryParams: { from: '2020-01-01', to: '2020-02-01' },
+        queryParams: { from: fromDate, to: toDate },
       });
       utilFunctions.expect200(res);
     });

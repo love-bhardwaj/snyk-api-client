@@ -238,9 +238,10 @@ export default {
     return !!queryParams ? `test/maven?${getQueryString(queryParams)}` : `test/maven`;
   },
   testNpmPublicPackage: (packageName: string, version: string, queryParams?: NpmTestQueryParams): string => {
+    const encodedPackageName = encodeURIComponent(packageName);
     return !!queryParams
-      ? `test/npm/${packageName}/${version}?${getQueryString(queryParams)}`
-      : `test/npm/${packageName}/${version}`;
+      ? `test/npm/${encodedPackageName}/${version}?${getQueryString(queryParams)}`
+      : `test/npm/${encodedPackageName}/${version}`;
   },
   testNpmFile: (queryParams?: NpmTestQueryParams): string => {
     return !!queryParams ? `test/npm?${getQueryString(queryParams)}` : `test/npm`;

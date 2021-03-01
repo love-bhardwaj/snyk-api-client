@@ -50,7 +50,7 @@ describe('Test API test', () => {
 
   describe('GET: Test public NPM pacakge', () => {
     it('Should test the public pacakge and return results', async () => {
-      const res = await Test.testNpmPackage({ packageName: 'lodash', version: '4.17.0' });
+      const res = await Test.testNpmPackage({ packageName: '@angular/core', version: '4.3.2' });
       utilFunctions.expect200(res);
     });
   });
@@ -206,7 +206,10 @@ describe('Test API test', () => {
     });
 
     it('Shoul return the results with the query parameters', async () => {
-      const res = await Test.testSBTPackage({ groupId, artifactId, version }, { queryParams: { repository, org } });
+      const res = await Test.testSBTPackage(
+        { groupId, artifactId, version },
+        { queryParams: { repository, org: orgId } },
+      );
       utilFunctions.expect200(res);
     });
   });

@@ -12,12 +12,12 @@ export default async (
   data: {
     orgId: string;
     projectId: string;
-    ignoreId: string;
+    issueId: string;
   },
   opts: ReqOpts = {},
 ): Promise<ReturnData> => {
-  const { orgId, projectId, ignoreId } = data;
-  const endpoint = getUrl.deleteIgnore(orgId, projectId, ignoreId);
+  const { orgId, projectId, issueId } = data;
+  const endpoint = getUrl.deleteIgnore(orgId, projectId, issueId);
 
   try {
     return await processRequest(endpoint, RequestMethod.DELETE, opts);

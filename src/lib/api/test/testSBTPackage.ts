@@ -14,7 +14,7 @@ export default async (
 ): Promise<ReturnData> => {
   const { groupId, artifactId, version } = data;
 
-  const endpoint = getUrl.testSbtPublicPackage(groupId, artifactId, version);
+  const endpoint = getUrl.testSbtPublicPackage(groupId, artifactId, version, opts.queryParams);
 
   try {
     return await processRequest(endpoint, RequestMethod.GET, opts);

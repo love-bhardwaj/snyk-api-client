@@ -13,6 +13,17 @@ let notificationSettings = {};
 })();
 
 describe('User API test', () => {
+  describe('GET: User details with user ID', () => {
+    it('Should return error for user not found', async () => {
+      try {
+        const res = await User.getUserDetails({ userId: 'test' });
+        utilFunctions.expectToNotExist(res);
+      } catch (error) {
+        utilFunctions.expect400(error);
+      }
+    });
+  });
+
   describe('GET: My user details', () => {
     it('Should return user deatils', async () => {
       const res = await User.getMyDetails();
