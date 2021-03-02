@@ -280,7 +280,7 @@ export interface LogQueryParams {
   sortOrder?: 'ASC' | 'DSC';
 }
 
-export interface LogReqOpts {
+export interface LogReqOpts extends ReqOpts {
   queryParams?: LogQueryParams;
 }
 
