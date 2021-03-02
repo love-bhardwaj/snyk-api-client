@@ -12,7 +12,7 @@ describe('Org API test', () => {
     describe('GET: List all organizations user belongs to', () => {
       it('Should list all the organizations user belongs to', async () => {
         const res = await Org.listUserOrgs();
-        orgId = res.response.orgs[2].id;
+        orgId = res.response.orgs[1].id;
         utilFunctions.expect200(res);
       });
     });

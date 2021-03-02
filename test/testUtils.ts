@@ -55,12 +55,12 @@ export default {
   },
   getOrgId: async (): Promise<string> => {
     const { orgs } = (await User.getMyDetails()).response;
-    const orgId = orgs[2].id;
+    const orgId = orgs[1].id;
     return Promise.resolve(orgId);
   },
   getProjectId: async (): Promise<string> => {
     const { orgs } = (await User.getMyDetails()).response;
-    const orgId = orgs[2].id;
+    const orgId = orgs[1].id;
     const { projects } = (await Project.getAllProjects(orgId, {})).response;
     const projectId = projects[0].id;
     return Promise.resolve(projectId);

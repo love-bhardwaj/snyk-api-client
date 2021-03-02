@@ -8,7 +8,7 @@ let projectId: string;
 
 (async () => {
   const { orgs } = (await User.getMyDetails()).response;
-  orgId1 = orgs[2].id;
+  orgId1 = orgs[0].id;
   orgId2 = orgs[1].id;
 })();
 

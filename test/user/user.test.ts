@@ -7,7 +7,7 @@ let projectId: string;
 let notificationSettings = {};
 (async () => {
   const { orgs } = (await User.getMyDetails()).response;
-  orgId = orgs[2].id;
+  orgId = orgs[1].id;
   const { projects } = (await Project.getAllProjects({ orgId: orgId })).response;
   projectId = projects[0].id;
 })();

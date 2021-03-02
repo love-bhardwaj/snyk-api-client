@@ -4,11 +4,10 @@ import utilFunctions from '../testUtils';
 let orgId: string;
 
 describe('Dependency API test', () => {
-  describe('POST: Get all dependencies for a org', () => {
+  describe('POST: Get all dependencies for a org', async () => {
     it('Should return 404 for org ID not found', async () => {
       try {
-        const { orgs } = (await User.getMyDetails()).response;
-        orgId = orgs[2].id;
+        orgId = await utilFunctions.getOrgId();
         const res = await Dependency.listAllDependencies({ orgId: 'something-invalid' });
         utilFunctions.expectToNotExist(res);
       } catch (error) {
