@@ -290,6 +290,15 @@ export interface ClientOpts {
   baseApiPath?: string;
 }
 
+export interface CreateWebhookBody {
+  url: string;
+  secret: string;
+}
+
+export interface CreateWebhookReqOpts extends ReqOpts {
+  requestBody: CreateWebhookBody;
+}
+
 export const enum RequestMethod {
   GET,
   POST,

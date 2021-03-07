@@ -1,5 +1,4 @@
 import getUrl from '../../utils/getUrl';
-import httpClient from '../../utils/httpClient';
 import { ReqOpts, ReturnData, RequestMethod } from '../../../types/types';
 import processRequest from '../../utils/processRequest';
 

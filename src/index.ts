@@ -12,6 +12,7 @@ import Test from './lib/api/test/index';
 import Monitor from './lib/api/monitor/index';
 import Report from './lib/api/report/index';
 import Log from './lib/api/log/index';
+import Webhook from './lib/api/webhook/index';
 
 export {
   ClientConfig,
@@ -28,4 +29,5 @@ export {
   Monitor,
   Report,
   Log,
+  Webhook,
 };

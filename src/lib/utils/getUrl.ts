@@ -335,4 +335,19 @@ export default {
   getOrgLevelLogs: (orgId: string, queryParams?: LogQueryParams): string => {
     return !!queryParams ? `org/${orgId}/audit?${getQueryString(queryParams)}` : `org/${orgId}/audit`;
   },
+  createWebhook: (orgId: string): string => {
+    return `org/${orgId}/webhooks`;
+  },
+  listWebhook: (orgId: string): string => {
+    return `org/${orgId}/webhooks`;
+  },
+  retrieveWebhook: (orgId: string, webhookId: string): string => {
+    return `org/${orgId}/webhooks/${webhookId}`;
+  },
+  deleteWebhook: (orgId: string, webhookId: string): string => {
+    return `org/${orgId}/webhooks/${webhookId}`;
+  },
+  pingWebhook: (orgId: string, webhookId: string): string => {
+    return `org/${orgId}/webhooks/${webhookId}/ping`;
+  },
 };
