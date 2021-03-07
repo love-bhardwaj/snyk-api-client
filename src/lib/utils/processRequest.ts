@@ -84,25 +84,28 @@ export default async (endpoint: string, method: RequestMethod, opts: ReqOpts = {
   } catch (error) {
     // TODO: Can distinguish between API and request error
     const response = error.response || null;
-    const httpCode = response.statusCode || null;
+    let httpCode = null;
     let snykRequestId = null;
-    let message = 'Somethin went wrong!';
-
-    if (httpCode === 400) {
-      message = 'Bad request, please check API documentation';
-    } else if (httpCode === 401) {
-      message = 'Invalid token or unauthorized to make the request';
-    } else if (httpCode === 404) {
-      message = `One of the IDs was not found`;
-    } else if (httpCode === 500) {
-      message = 'Internal server error, please check the error ref';
-    }
+    let message = 'Something went wrong!';
+    let err = 'Unknown error';
 
     if (response) {
+      httpCode = response.statusCode;
       snykRequestId = getRequestId(response.headers);
 
+      if (httpCode === 400) {
+        message = 'Bad request, please check API documentation';
+      } else if (httpCode === 401) {
+        message = 'Invalid token or unauthorized to make the request';
+      } else if (httpCode === 404) {
+        message = `One of the IDs was not found`;
+      } else if (httpCode === 500) {
+        message = 'Internal server error, please check the error ref';
+      }
+
       const responseBody = response.body;
-      const err = new Error(message);
+      if (responseBody.error) err = responseBody.error;
+
       return Promise.reject({
         success: false,
         response: responseBody,

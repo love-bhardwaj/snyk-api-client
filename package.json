@@ -25,6 +25,7 @@
     "test-monitor": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/monitor/*.test.ts'",
     "test-report": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/report/*.test.ts'",
     "test-log": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/log/*.test.ts'",
+    "test-webhook": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/webhook/*.test.ts'",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build && npm run lint && npm run format",
     "preversion": "npm run build && npm run lint && npm run format && npm run test && snyk test",
